@@ -1,0 +1,16 @@
+<table>
+    <?php foreach ($this->users as $user) {
+    echo "<tr>";
+        echo "<td><img src='".$user['icon']."' /></td>";
+    echo "<td>".$user['name']."</td>";
+    if($user['isApproved']==0){
+    echo "<td><a href='/admin/user/enable/id/".$user['userId']."' >Apstiprināt</a></td>";
+    }
+    else{
+       echo "<td><a href='/admin/user/disable/id/".$user['userId']."' >Izslēgt</a></td>";
+    }
+    echo "</tr>";
+}
+    ?>
+
+</table>

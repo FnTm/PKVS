@@ -187,13 +187,13 @@ a {
 	color:#b3b3b3;
 	text-decoration:none;
 }
-.fblogin {
-	background: url('../images/facebook_signin.png') no-repeat 0px -22px;
+.login {
+	background: url('../images/pase.png') no-repeat;
 	padding: 0px 0px 0px 0px;
 	margin: 0px 0px -5px 0px;
 	display:inline-block;
-	width: 150px;
-	height: 23px;
+	width: 193px;
+	height: 25px;
 }
 /* LANGUAGE */
 #language_list {

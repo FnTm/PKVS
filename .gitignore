@@ -6,3 +6,5 @@ nbproject
 /public/attachments*
 /library/Zend
 /library/ZendX
+/tests/log/*
+/application/configs/draugiem.config.ini

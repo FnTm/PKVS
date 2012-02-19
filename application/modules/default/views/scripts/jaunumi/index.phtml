@@ -1,1 +1,9 @@
-<?php echo "sākums";
+<?php foreach ($this->jaunumi as $jaunumi) { ?>
+    <div class="content_box">
+        <h2><a href="jaunumi/skatit/<?php echo $jaunumi['newsId'];?>"><?php echo $jaunumi['title']; ?></a></h2>
+
+        <p>
+            <?php echo $jaunumi['content']; ?>
+        </p>
+    </div>
+    <?php } ?>

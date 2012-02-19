@@ -27,9 +27,36 @@ echo $this->doctype ();
 <?php
 
 	echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/JP.js', 'text/javascript', '' );
-	echo $this->headScript ()->appendFile ( $this->baseUrl ().'/js/jquery-ui-1.7.2.custom.min.js', 'text/javascript', '' );
-	?>
+	echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/jquery-1.4.2.min.js', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery-ui-1.8.16.custom.min.php', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery.dateTime.js', 'text/javascript', '' );
+        ?>
+<style>
+    .ui-datepicker{
+       font-size: 11px;
 
+    }
+    .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; font-size: 11px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 20%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+</style>
+    <script type="text/javascript">
+        $(function(){
+        $('#time').datetimepicker({timeFormat: 'hh:mm:ss', dateFormat:'yy-mm-dd',beforeShow: function(input) {
+   /** var x = 205; //add offset
+    var y = 245;
+    field = $(input);
+    left = field.position().left + x;
+    bottom = y;
+    setTimeout(function(){
+        $('#ui-datepicker-div').css({'top':'', 'bottom':bottom + 'px', 'left': left + 'px'});
+    },1);
+    */
+}});
+        });
+    </script>
 	<script type="text/javascript">
 			$(function(){
 

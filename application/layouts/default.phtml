@@ -52,8 +52,7 @@ echo $this->doctype();
     </div>
 
     <div id="header2">
-		<h1 id="site_logo"><a href="<?php echo APP_DOMAIN; ?>" title="Turnīri"><img src="/images/turniri.png"/></a>
-        </h1>
+
 
         <div class="topmenu">
 		<?php
@@ -66,13 +65,11 @@ echo $this->doctype();
             echo "[ ";
             $user = Zend_Auth::getInstance()->getIdentity();
             echo "<a href='".$this->route."/lietotajs/profils'>".$user->name."</a>";
-            echo " | <a href='" . $this->baseUrl() . '/' . $this->lang . "/authentication/logout'>Iziet</a> ]";
+            echo " | <a href='" . $this->baseUrl() ."/authentication/logout'>Iziet</a> ]";
         }
         else {
 			echo "<div id=\"syslogin\">";
-            echo "[ <a href='" . $this->baseUrl() . '/' . $this->lang . "/authentication/login'>Ienākt</a> |";
-            echo " <a href='" . $this->baseUrl() . '/' . $this->lang . "/authentication/register'>Reģistrēties</a> |";
-			echo " <a class='fblogin' href='" . $this->baseUrl() . '/' . $this->lang . "/authentication/flogin'></a>";
+            echo "[ <a class='login' href='" . $this->baseUrl() ."/authentication/login'></a>";
 			echo " ] </div>";
 
         }

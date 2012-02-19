@@ -11,6 +11,29 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         return $modelLoader;
     }
+    protected function _initloadDraugiemConfig(){
+        $draugiemConf=new Zend_Config_Ini(APPLICATION_PATH.'/configs/draugiem.config.ini',APPLICATION_ENV);
+        Zend_Registry::set("draugiemOptions", $draugiemConf->draugiem);
+        /** @var $draugiem Zend_Config_Ini */
+        /*$draugiem=Zend_Registry::get("draugiemOptions");
+       var_dump($draugiem->secret);
+        */
+    }
+
+    protected function _initACL()
+    {
+        
+        if (Zend_Auth::getInstance()->hasIdentity()) {
+            Zend_Registry::set('role',
+                               Zend_Auth::getInstance()->getStorage()->read()->role);
+        } else {
+            Zend_Registry::set('role', 'guest');
+        }
+        $this->_acl = new Model_AuthAcl();
+        $this->_auth = Zend_Auth::getInstance();
+        $fc = Zend_Controller_Front::getInstance();
+        $fc->registerPlugin(new Plugin_AccessCheck($this->_acl));
+    }
 
     protected function _initViewHelpers()
     {
@@ -28,10 +51,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->doctype('HTML4_STRICT');
         $view->headMeta()
                 ->appendHttpEquiv('Content-type', 'text/html;charset=utf-8')
-                ->appendName('description', 'Turniri');
+                ->appendName('description', 'TDA Pūpolītis');
         $view->headTitle()
                 ->setSeparator(' - ')
-                ->headTitle('Turniri');
+                ->headTitle('TDA Pūpolītis');
     }
 
     protected function _initAutoloaders()
@@ -133,6 +156,20 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $nav = new Zend_Navigation($config);
         //var_dump($nav);
         $view->navigation($nav);
+    }
+
+    protected function _initRoutes()
+    {
+
+        $this->bootstrap('frontcontroller');
+        $front = $this->getResource('frontcontroller');
+        $router = $front->getRouter();
+        // Boss context route
+        $route = new Zend_Controller_Router_Route('jaunumi/', array('module' => 'default', 'action' => 'index', 'controller' => 'jaunumi'));
+        $router->addRoute('jaunumi', $route);
+        $route = new Zend_Controller_Router_Route('jaunums/:id', array('id' => 0, 'module' => 'default', 'action' => 'skatit', 'controller' => 'jaunumi'));
+        $router->addRoute('jaunums', $route);
+
     }
 
 

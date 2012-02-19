@@ -1,6 +1,6 @@
 <?php
 
-class JaunumiController extends JP_Controller_Action {
+class Admin_JaunumiController extends JP_Controller_Action {
 
     public function init() {
         /* Initialize action controller here */
@@ -20,7 +20,7 @@ class JaunumiController extends JP_Controller_Action {
             $this->log('Nav norādīts turnīra identifikators', 'error');
             $form = NULL;
         } else {
-            $turniriModel = new Model_Turniri();
+            $turniriModel = new Model_Pasakumi();
             $turnirs = $turniriModel->getTurnirs($id);
             if ($turnirs == NULL) {
                 $this->log('Turnīrs neeksistē', 'error');

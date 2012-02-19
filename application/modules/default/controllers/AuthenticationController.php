@@ -26,6 +26,12 @@ class AuthenticationController extends JP_Controller_Action
         $this->_forward('login');
     }
 
+
+    /**
+     *
+     * @return void
+     * TODO Ik pa laikam pārbaudīt vai lietotājs nav atteicies no aplikācijas
+     */
     public function loginAction()
     {
         $this->view->title = 'Login';
@@ -33,48 +39,12 @@ class AuthenticationController extends JP_Controller_Action
             // $role = Zend_Registry::get('role');
             $this->_redirect('/');
         }
-        $request = $this->getRequest();
-        $form = new Form_LoginForm();
-		$form->setAction($this->view->route."/authentication/login");
-        if ($request->isPost()) {
-            if ($form->isValid($this->_request->getPost())) {
-                $username = $form->getValue('username');
-                $password = $form->getValue('password');
-                $authAdapter = $this->authModel->getAuthAdapter();
-                $authAdapter->setIdentity($username)->setCredential($password);
-                $auth = Zend_Auth::getInstance();
-                $result = $auth->authenticate($authAdapter);
-                $userModel = new Model_Users();
-                $identity = $userModel->getUserByUsername($username);
-                if ($result->isValid() && $identity->isBlocked=='0') {
-                    $authStorage = $auth->getStorage();
-                    $authStorage->clear();
-                    $authStorage->write($identity);
-                    if (Zend_Auth::getInstance()->hasIdentity()) {
-                        $this->_redirect('/');
-                    }
-                } else {
-                    $this->view->errorMessage = "Lietotājvārds un/vai parole ir nepareiza.";
-                }
-            }
-        }
-        $this->view->form = $form;
-    }
 
-    public function floginAction()
-    {
-        $this->view->title = 'Login';
-        if (Zend_Auth::getInstance()->hasIdentity()) {
-            // $role = Zend_Registry::get('role');
-            $this->_redirect('/');
-        }
-
-        $redirectUri = APP_DOMAIN.'/'.$this->view->lang."/authentication/flogin/";
-        $scope = 'email';
-
+        $draugiem = Zend_Registry::get("draugiemOptions");
         // Create the authentication adapter.
-        $adapter = new JP_Auth_Adapter_Facebook($appId, $secret, $redirectUri, $scope);
-
+        $adapter = new JP_Auth_Adapter_Draugiem($draugiem->appId, $draugiem->secret, $draugiem->redirectUri);
+        //echo new ReflectionClass($adapter);
+        //exit();
         // Get an authenticator instance
         $auth = Zend_Auth::getInstance();
 
@@ -88,49 +58,32 @@ class AuthenticationController extends JP_Controller_Action
 
             // Get the user object from the returned messages.
             $fbUser = $messages['user'];
+            // var_dump($fbUser);
+            $userModel = new Model_Users();
+            $register = false;
 
-           // var_dump($fbUser);
-            $userModel=new Model_Users();
-            $register=false;
-            $user=$userModel->processUserFromFaceBook($fbUser,$register);
-            if($user->isBlocked==0){
-            $auth->getStorage()->clear();
-            $auth->getStorage()->write($user);
-            if($register===true){
-                $this->log('Paldies, esat veiksmīgi reģistrējies mūsu lapā!','success');
-            }
-            }
-            else{
+            $user = $userModel->processUserFromDraugiem($fbUser, $register);
+
+            if ($user->isApproved == 0) {
                 $auth->getStorage()->clear();
-                $this->log('Ienākšana faur facbook nebija veiksmīga!','error');
+                if ($register === true) {
+                    $this->log('Paldies, esat veiksmīgi reģistrējies mūsu lapā! Administrators apskatīs jūsu pieteikumu, un piešķirs tiesības jau tuvākajā laikā!', 'success');
+                }
+                else {
 
-            }
-            $this->_redirect('/');
-            
-           
-        }
-    }
+                    $auth->getStorage()->clear();
+                    $this->log('Jūsu profils vēl nav apstiprināts! Tas notiks jau tuvākajā laikā!', 'error');
 
-    public function registerAction()
-    {
-        if (Zend_Auth::getInstance()->hasIdentity()) {
-            $this->_redirect('/');
-        }
-        $form = new Form_Register();
-		$form->setAction($this->view->route.'/authentication/register');
-        $this->view->form = $form;
-        if ($this->getRequest()->isPost()) {
-            $data = $this->_request->getPost();
-            if ($form->isValid($data)) {
-                $userModel = new Model_Users();
-                $userModel->createUser($form->getValidValues($data));
-                /** @todo Jāpievieno paziņojums, ka veiksmīga reģistrācija */
-                $this->_forward('login');
+                }
             }
             else {
-                $form->populate($data);
+                $auth->getStorage()->clear();
+                $auth->getStorage()->write($user);
+                Zend_Registry::set('role', $user->role);
 
             }
+            $this->_redirect('/');
+
 
         }
     }

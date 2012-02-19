@@ -37,6 +37,7 @@
         $where = $this->getAdapter()->quoteInto("newsId = ?", $id);
         $this->delete($where);
     }
+
     public function getAllJaunumi(){
 
         $select =  $this->select()->order("time desc");

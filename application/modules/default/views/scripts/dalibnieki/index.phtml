@@ -1,0 +1,21 @@
+<table>
+
+    <?php
+
+    foreach ($this->users as $user):
+        ?>
+<tr>
+
+    <td><?php echo $user->name;?></td>
+    <td><img src="<?php echo $user->icon;?>" title="<?php echo $user->name;?>" alt="<?php echo $user->name;?>" /></td>
+
+
+
+</tr>
+
+
+        <?php
+    endforeach
+    ?>
+
+</table>

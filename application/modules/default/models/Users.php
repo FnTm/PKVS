@@ -21,18 +21,22 @@
 class Model_Users extends Zend_Db_Table_Abstract
 {
     protected $_name = 'users';
+    protected $_rowClass="Model_User_Row";
 
-    public function createUser($data)
+
+
+    public function createDraugiemUser($data)
     {
-
         $row = $this->createRow();
+         
 
         // set the row data
-        $row->name = $data['name'];
-        $row->username = $data['username'];
-        $row->password = md5($data['password']);
-        $row->role = 'u';
-        $row->email = $data['email'];
+        $row->name = $data['name']." ".$data['surname'];
+        $row->role = 'user';
+        $row->email = "sdf";
+        $row->icon= $data['img'];
+
+        $row->draugiemId = $data['uid'];
         $row->registered = date('Y-m-d H:i:s');
 
         // save the new row
@@ -43,45 +47,24 @@ class Model_Users extends Zend_Db_Table_Abstract
         return $id;
     }
 
-    public function createFacebookUser($data)
-    {
-        $row = $this->createRow();
-
-        // set the row data
-        $row->name = $data->name;
-        $row->username = $data->id;
-        $row->password = md5($data->id);
-        $row->role = 'u';
-        $row->email = $data->email;
-        $row->isFromFacebook = 1;
-        $row->facebookId = $data->id;
-        $row->registered = date('Y-m-d H:i:s');
-
-        // save the new row
-        $row->save();
-
-        // now fetch the id of the row you just created and return it
-        $id = $this->_db->lastInsertId();
-        return $id;
-    }
-
-    public function processUserFromFaceBook($data, &$register = false)
+    public function processUserFromDraugiem($data, &$register = false)
     {
 
-        if (NULL != $row = $this->getFacebookUser($data->id)) {
+
+        if (NULL != $row = $this->getDraugiemUser($data['uid'])) {
             return $row;
         }
         else {
             $register = true;
-            $this->createFacebookUser($data);
-            return $this->getFacebookUser($data->id);
+            $this->createDraugiemUser($data);
+            return $this->getDraugiemUser($data['uid']);
         }
 
     }
 
-    public function getFacebookUser($id)
+    public function getDraugiemUser($id)
     {
-        $select = $this->select()->where('facebookId=?', $id)->where('isFromFacebook=?', '1');
+        $select = $this->select()->where('draugiemId=?', $id);
         $row = $this->fetchRow($select);
         return $row;
     }
@@ -131,13 +114,13 @@ class Model_Users extends Zend_Db_Table_Abstract
         /** Pievienojam mainīgajam, jo empty() māk pārbaudīt tikai mainīgos. */
         return !empty($return);
     }
-    public function bloket($id){
-        $data['isBlocked'] = 1;
+    public function approve($id){
+        $data['isApproved'] = 1;
         $where = $this->getAdapter()->quoteInto('userId = ?', $id);
         $this->update($data, $where);
     }
-    public function atbloket($id){
-        $data['isBlocked'] = 0;
+    public function disapprove($id){
+        $data['isApproved'] = 0;
         $where = $this->getAdapter()->quoteInto('userId = ?', $id);
         $this->update($data, $where);
     }

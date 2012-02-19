@@ -10,19 +10,12 @@ class IndexController extends JP_Controller_Action
 
     public function indexAction()
     {
+            	    	//$this->_helper->layout->disableLayout();
+        /** TODO Jāpievieno agregators */
         $jaunumiModel=new Model_Jaunumi();
         $this->view->jaunumi=$jaunumiModel->getAllJaunumi();
         
     }
-    public function changeAction(){
-        $this->getHelper('viewRenderer')->setNoRender();
-    }
-    public function clearLanguageAction(){
-
-        setcookie('lang', true, 1, '/');
-        $this->_redirect('/');
-    }
-
 
 }
 

@@ -1,6 +1,6 @@
 <?php foreach ($this->jaunumi as $jaunumi) { ?>
     <div class="content_box">
-        <h2><?php echo $jaunumi['title']; ?></h2>
+        <h2><a href="/jaunums/<?php echo $jaunumi['newsId'];?>"><?php echo $jaunumi['title']; ?></a></h2>
 
         <p>
             <?php echo $jaunumi['content']; ?>

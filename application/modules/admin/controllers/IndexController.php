@@ -1,6 +1,6 @@
 ﻿<?php
 
-class IndexController extends JP_Controller_Action
+class Admin_IndexController extends JP_Controller_Action
 {
 
     public function init()
@@ -10,18 +10,13 @@ class IndexController extends JP_Controller_Action
 
     public function indexAction()
     {
-        $turniriModel=new Model_Turniri();
+        $turniriModel=new Model_Pasakumi();
         $this->view->tuvakie=$turniriModel->getClosestTurniri();
-        $this->addLink('/turniri/pievienot/','add_tournament','u');
+       // $this->addLink('/turniri/pievienot/','add_tournament','u');
 
     }
     public function changeAction(){
         $this->getHelper('viewRenderer')->setNoRender();
-    }
-    public function clearLanguageAction(){
-
-        setcookie('lang', true, 1, '/');
-        $this->_redirect('/');
     }
 
 
