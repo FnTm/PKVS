@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+    <nav>
+        <home>
+            <label>Sākums</label>
+            <module>default</module>
+            <controller>index</controller>
+            <action>index</action>
+            <order>3</order>
+        </home>
+
+        <galerijas>
+            <label>Galerijas</label>
+            <module>default</module>
+            <controller>galerija</controller>
+            <action>index</action>
+            <order>2</order>
+
+        </galerijas>
+         <about>
+            <label>Par mums</label>
+            <module>default</module>
+            <controller>par-mums</controller>
+            <action>index</action>
+            <order>2</order>
+
+        </about>
+         <dejotaji>
+            <label>Dejotāji</label>
+            <module>default</module>
+            <controller>dejotaji</controller>
+            <action>index</action>
+            <order>2</order>
+
+        </dejotaji>
+                <concerts>
+            <label>Koncerti</label>
+            <module>default</module>
+            <controller>noma</controller>
+            <action>index</action>
+            <order>1</order>
+        </concerts>
+        <contact>
+            <label>Kontakti</label>
+            <module>default</module>
+            <controller>noma</controller>
+            <action>index</action>
+            <order>1</order>
+        </contact>
+
+    </nav>
+</configdata>

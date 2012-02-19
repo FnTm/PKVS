@@ -1,0 +1,103 @@
+<?php
+echo $this->doctype();
+?>
+<html>
+<head>
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+<?php
+    echo $this->headMeta();
+    ?>
+<?php
+    echo $this->headTitle();
+    echo $this->headLink()->appendStylesheet($this->baseUrl() . '/css/style.css')->appendStylesheet($this->baseUrl() . '/js/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css');
+    echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/jquery-1.4.2.min.js', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery-ui-1.8.16.custom.min.php', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery.dateTime.js', 'text/javascript', '' );
+    ?>
+
+<style>
+    .ui-datepicker{
+       font-size: 11px;
+        
+    }
+    .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; font-size: 11px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 20%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+</style>
+    <script type="text/javascript">
+        $(function(){
+        $('#time').datetimepicker({timeFormat: 'hh:mm:ss', dateFormat:'yy-mm-dd',beforeShow: function(input) {
+    var x = 205; //add offset
+    var y = 245;
+    field = $(input);
+    left = field.position().left + x;
+    bottom = y;
+    setTimeout(function(){
+        $('#ui-datepicker-div').css({'top':'', 'bottom':bottom + 'px', 'left': left + 'px'});
+    },1);
+}});
+        });
+    </script>
+</head>
+
+
+<body>
+<div id="header">
+    <div id="userHeader">
+
+
+    </div>
+
+    <div id="header2">
+		<h1 id="site_logo"><a href="<?php echo APP_DOMAIN; ?>" title="Turnīri"><img src="/images/turniri.png"/></a>
+        </h1>
+
+        <div class="topmenu">
+		<?php
+			echo $this->navigation()->menu();
+		?>
+        </div>
+<?php
+        if (Zend_Auth::getInstance()->hasIdentity()) {
+			echo "<div id=\"syslogin\">";
+            echo "[ ";
+            $user = Zend_Auth::getInstance()->getIdentity();
+            echo "<a href='".$this->route."/lietotajs/profils'>".$user->name."</a>";
+            echo " | <a href='" . $this->baseUrl() . '/' . $this->lang . "/authentication/logout'>Iziet</a> ]";
+        }
+        else {
+			echo "<div id=\"syslogin\">";
+            echo "[ <a href='" . $this->baseUrl() . '/' . $this->lang . "/authentication/login'>Ienākt</a> |";
+            echo " <a href='" . $this->baseUrl() . '/' . $this->lang . "/authentication/register'>Reģistrēties</a> |";
+			echo " <a class='fblogin' href='" . $this->baseUrl() . '/' . $this->lang . "/authentication/flogin'></a>";
+			echo " ] </div>";
+
+        }
+
+        ?>
+
+    </div>
+</div>
+<div id="content">
+
+<?php
+    echo $this->partial('priorityMessages.phtml', array('priorityMessages' => $this->priorityMessenger()));
+?> 
+    <div id="left-col">
+<?php
+    echo $this->layout()->content;
+?>
+	</div>
+	<div id="right-col">
+	</div>
+</div>
+<div id="footer"><p style="text-align:center;"><strong>© 2011/2012 Visas tiesības aizsargātas</strong></p></div>
+</div>
+</div>
+
+</body>
+
+</html>

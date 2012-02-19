@@ -1,0 +1,323 @@
+html
+{
+
+margin:0;
+}
+
+#header li {
+    float:left;
+    background:url("images/tab-span.png")
+      no-repeat left top;
+    margin:0;
+    padding:0 0 0 9px;
+    list-style-type:none;
+    border-bottom:1px solid black;
+    }
+  #header a, #header strong, #header span {
+    display:block;
+    background:url("images/tab-a.png")
+      no-repeat right top;
+    padding:5px 15px 4px 6px;
+    }
+  #header #current {
+    background-image:url("left_on.gif");
+    }
+  #header #current a {
+    background-image:url("right_on.gif");
+    padding-bottom:5px;
+    }
+    #header
+    {
+    
+    
+    }
+    .maincontainer td
+    {
+    padding:10px;
+    }
+a .lux_problem
+{
+color:red;
+font-size:13px;
+}
+a .unsolved_problem
+{
+color:red;
+font-size:15px;
+}
+a .unsolved_mistake
+{
+color:#4F90C9;
+font-size:15px;
+}
+a .lux_solution
+{
+color:green;
+font-size:13px;
+}
+.hd_head
+{
+color:#4E90C9;
+}
+    
+    
+    #contentPad{
+margin:20px;
+}
+
+.formInfo a, .formInfo a:active, formInfo a:visited{
+	background-color:#FF0000;
+	font-size: 1.3em;
+	font-weight:bold;
+	padding:1px 2px;
+	margin-left:5px;
+	color:#FFFFFF;
+	text-decoration: none;
+}
+
+.formInfo a:hover{
+	color:#660000;
+	text-decoration: none;
+}
+
+/* ---------->>> jtip <<<---------------------------------------------------------------*/
+
+#JT_arrow_left{
+	background-image: url(images/arrow_left.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: absolute;
+	z-index:101;
+	left:-12px;
+	height:23px;
+	width:10px;
+    top:-3px;
+}
+
+#JT_arrow_right{
+	background-image: url(images/arrow_right.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	position: absolute;
+	z-index:101;
+	height:23px;
+	width:11px;
+    top:-2px;
+}
+
+#JT {
+	position: absolute;
+	z-index:100;
+	border: 2px solid #4F90C9;
+	background-color: #fff;
+}
+
+#JT_copy{
+	padding:10px 10px 10px 10px;
+	
+}
+
+.JT_loader{
+	background-image: url(images/loader.gif);
+	background-repeat: no-repeat;
+	background-position: center center;
+	width:100%;
+	height:12px;
+}
+
+#JT_close_left{
+	background-color: #4F90C9;
+	text-align: left;
+	padding-left: 8px;
+	padding-bottom: 5px;
+	padding-top: 2px;
+	font-weight:bold;
+}
+
+#JT_close_right{
+	background-color: #CCCCCC;
+	text-align: left;
+	padding-left: 8px;
+	padding-bottom: 5px;
+	padding-top: 2px;
+	font-weight:bold;
+}
+
+#JT_copy p{
+margin:3px 0;
+}
+
+#JT_copy img{
+	padding: 1px;
+	border: 1px solid #CCCCCC;
+}
+
+.jTip{
+cursor:help;
+}
+
+body {
+	font-family: Calibri;
+	font-size: 12px;
+	cursor: default;
+	background-color: #FFFFFF
+}
+* {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+}
+html {
+	height: 100%;
+	margin-bottom: 1px;
+}
+#container {
+	width: 80%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: left;
+	background-color: #FFFFFF;
+}
+#header {
+	width: 100%;
+	padding-top: 15px;
+}
+.spacer {
+	width: 100%;
+	height: 15px;
+}
+hr {
+	border: 0px;
+	color: #CCCCCC;
+	background-color: #CDCDCD;
+	height: 1px;
+	width: 100%;
+	text-align: left;
+}
+h1 {
+	font-size: 28px;
+	color: #cc0000;
+	background-color: #FFFFFF;
+	font-family: Calibri;
+	font-weight: 300;
+}
+h2 {
+	font-size: 15px;
+	color: gray;
+	font-family: Calibri;
+	font-weight: 300;
+	background-color: #FFFFFF;
+}
+h3 {
+	color: #cc0000;
+	font-size: 15px;
+	text-align: left;
+	font-weight: 300;
+	padding: 5px;
+	margin-top: 5px;
+}
+
+#left {
+	float: left;
+	width: 200px;
+	background-color: #FFFFFF;
+	color: black;
+}
+
+#main {
+	margin: 5px 5px 5px 260px;
+	padding: 15px;
+	border-left: 1px solid silver;
+}
+p {
+	color: black;
+	background-color: #FFFFFF;
+	line-height: 20px;
+	padding: 5px;
+}
+a {
+		background-color: #FFFFFF;
+	text-decoration: none;
+}
+a:hover {
+	color: #4F90C9;
+	background-color: #FFFFFF;
+	text-decoration: none;
+}
+#footer {
+	clear: both;
+	font-size: 12px;
+	font-family:Calibri;
+}
+.right {
+	color: gray;
+	background-color: #FFFFFF;
+	float: right;
+	font-size: 100%;
+	margin-top: 5px;
+}
+.left {
+	color: gray;
+	background-color: #FFFFFF;
+	float: left;
+	font-size: 100%;
+	margin-top: 5px;
+}
+
+/* Bar Graphs */
+.graph {
+  width: 250px;
+  position: relative;
+  right: 30px;
+}
+.bar-title {
+  position: relative;
+  float: left;
+  width: 104px;
+  line-height: 20px;
+  margin-right: 17px;
+  font-weight: bold;
+  text-align: right;
+}
+.bar-container {
+  position: relative;
+  float: left;
+  width: 110px;
+  height: 10px;
+  margin: 0px 0px 15px;
+}
+
+.bar-container div {
+  background-color:#cc4400;
+  height: 20px;
+}
+.bar-container strong {
+  position: absolute;
+  right: -32px;
+  top: 0px;
+  overflow: hidden;
+}
+#poll-results p {
+  text-align: center;
+}
+body{ font: 55.5% "Calibri", Calibri; margin: 5px;}
+			.demoHeaders { margin-top: 2em; }
+			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+			ul#icons {margin: 0; padding: 0;}
+			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+			ul#icons span.ui-icon {float: left; margin: 0 4px;}
+			
+			
+LI{list-style: none ; padding-left:20px; }
+.rig{float:right;}
+#ratings{margin:0px auto;}
+   #rights{float:right;} 
+   
+   #comm{margin:30px;}
+#csubmit{padding-top:0px;}
+
+#rd{float:right;}
+#up{white-space:normal;}
+
+    

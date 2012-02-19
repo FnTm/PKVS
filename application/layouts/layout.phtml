@@ -1,0 +1,33 @@
+<?php echo $this->doctype(); ?>
+<html>
+<head>
+	<?php echo $this->headMeta(); ?>
+	<?php echo $this->headTitle(); ?>
+
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/style.css')->appendStylesheet($this->baseUrl().'/css/form.css'); ?>
+<?php 
+echo $this->headScript()->prependFile('/js/JP.js','text/javascript','');?>
+</head>
+<body>
+asdasdasd
+<div id="outer">
+<div id="header" align="center"><?php echo $this->title; ?></div>
+<div id="bar"></div>
+<div id="bodyblock" align="right">
+<div id="column" align="left">
+<h4 align="center">Menu</h4>
+<?php 
+//$partial_menu = array('menu.phtml', 'default');
+//$this->navigation()->menu()->setPartial($partial_menu);
+echo $this->navigation()->menu()->render(); ?>
+</div>
+<div id="content">
+<?php echo $this->layout()->content; ?>
+
+</div>
+</div>
+<div id="footer" align="center"></div>
+</div>
+
+</body>
+</html>

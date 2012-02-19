@@ -1,0 +1,11 @@
+<?php 
+echo "<div class=\"content_box\">";
+foreach($this->users as $user){
+    echo $user['name'];
+	if ($user['isBlocked'] == 0) {
+		echo " [ <a href=\"".$this->route."/admin/bloket-lietotaju/id/".$user['userId']."\">Nobloķēt</a> ]</br>"; 
+	} else {
+		echo " [ <a href=\"".$this->route."/admin/atbloket-lietotaju/id/".$user['userId']."\">Atbloķēt</a> ]</br>";
+	}
+}
+echo "</div>";

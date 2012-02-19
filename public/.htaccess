@@ -1,0 +1,20 @@
+SetEnv APPLICATION_ENV development
+
+RewriteRule  ^(browse|config).*  - [L]
+ErrorDocument 500 /error-docs/500.shtml
+SetEnv CACHE_OFFSET 2678400
+SetEnv APP_PREF  
+
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+Header set Expires "Fri, 25 Sep 2037 19:30:32 GMT"
+Header unset ETag
+FileETag None
+</FilesMatch>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
+        

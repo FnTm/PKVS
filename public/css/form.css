@@ -1,0 +1,30 @@
+@CHARSET "UTF-8"; 
+ 
+dt { 
+    padding: 0 0 5px 0; 
+} 
+ 
+dd { 
+    padding: 0 0 10px 10px; 
+} 
+ 
+dt label { 
+    font-weight: bold; 
+    font-size: 12px; 
+} 
+dt label.required:after { 
+    content: "* "; 
+    color: #ff0000; 
+} 
+ 
+ul.errors { 
+    padding: 5px 0 5px 25px; 
+    color: #ff0000; 
+}
+#mistakeTable th{
+	border:1px dotted gray;
+	padding:2px 15px;
+}
+#mistakeTable td{
+	padding:2px 8px;
+}

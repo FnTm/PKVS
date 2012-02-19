@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<nav>
+<logout>
+			<label>Iziet no sistēmas</label>
+			<module>default</module>
+			<controller>authentication</controller>
+			<action>logout</action>
+			<resource>default:authentication</resource>
+			<privilege>logout</privilege>
+		</logout>
+		<registry>
+			<label>Reģistrs</label>
+			<uri>#</uri>
+			<role>admin</role>
+			<privilege>index</privilege>
+			<pages>
+				<index>
+					<label>Kļūdas</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>mistakes</action>
+				</index>
+				
+			</pages>
+		</registry>
+
+
+	</nav>
+</config>

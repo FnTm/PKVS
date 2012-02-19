@@ -1,0 +1,35 @@
+<?php
+
+function printList($links=array(),$route,$postfix){
+	echo "<div class=\"content_box\">";
+
+	echo "<h2>".Zend_Registry::get('Zend_Translate')->getAdapter()->translate('my_activities'.$postfix)."</h2><p>";
+    foreach($links as $link){
+        echo "<a class=\"side-link\" href=".$route.$link['link'].">".Zend_Registry::get('Zend_Translate')->getAdapter()->translate($link['title'])."</a>";
+    }
+	echo "</p></div>";
+}
+if(!empty($this->links)){
+    if(Zend_Auth::getInstance()->hasIdentity() && Zend_Auth::getInstance()->getIdentity()->role==='a' && isset($this->links['a'])){
+            printList($this->links['a'],$this->route,'a');
+    }
+
+    if(Zend_Auth::getInstance()->hasIdentity() && in_array(Zend_Auth::getInstance()->getIdentity()->role,array('u','a') )&& isset($this->links['u'])){
+            printList($this->links['u'],$this->route,'u');
+    }
+
+}
+
+?>
+
+<div class="content_box">
+<center><strong><p><?php echo Zend_Registry::get('Zend_Translate')->getAdapter()->translate('Mūsu atbalstītāji:');?></strong>
+
+				<p><a href="http://www.sportapunkts.lv"><img src="/images/sportapunkts.jpg" alt="Sporta punkts" width="350"
+															 height="248" longdesc="http://www.sportapunkts.lv"/></a></p>
+
+				<p><a href="http://www.errea.it/ENG/technical-sportswear/"><img src="/images/Errea.jpg" width="300"
+																				height="96" alt="Errea"
+																				longdesc="http://www.errea.it/ENG/technical-sportswear/"/></a>
+				</p>
+</div>

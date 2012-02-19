@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<nav>
+<logout>
+			<label>Iziet no sistēmas</label>
+			<module>default</module>
+			<controller>authentication</controller>
+			<action>logout</action>
+			<resource>default:authentication</resource>
+			<privilege>logout</privilege>
+		</logout>
+		<registry>
+			<label>Reģistrs</label>
+			<uri>#</uri>
+			<role>admin</role>
+			<privilege>index</privilege>
+			<pages>
+				<index>
+					<label>Kļūdas</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>mistakes</action>
+				</index>
+				<system>
+					<label>Sistēmas</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>system</action>
+				</system>
+				<add-system>
+					<label>Pievienot Sistēmu</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>system-add</action>
+				</add-system>
+				<operators>
+					<label>Operatori</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>operators</action>
+				</operators>
+				<operators-add>
+					<label>Pievienot Operatoru</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>operator-add</action>
+				</operators-add>
+				<codif>
+					<label>Kodifikatori</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>codificators</action>
+				</codif>
+				<add-codif>
+					<label>Pievienot kodifikatoru</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>codificator-add</action>
+				</add-codif>
+				<service>
+					<label>Servisi</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>services</action>
+				</service>
+				<add-service>
+					<label>Pievienot servisu</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>service-add</action>
+				</add-service>
+				<process>
+					<label>Procesi</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>process</action>
+				</process>
+				<add-process>
+					<label>Pievienot procesu</label>
+					<module>admin</module>
+					<controller>registry</controller>
+					<action>process-add</action>
+				</add-process>
+			</pages>
+		</registry>
+
+
+	</nav>
+</config>

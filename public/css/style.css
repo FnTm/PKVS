@@ -1,0 +1,265 @@
+@charset "utf-8";
+/* CSS Document */
+html {
+	background: url(../images/bg.png);
+}
+body {
+	padding: 0;
+	margin: 0;
+	background: url(../images/bg2.png) repeat-x top left;	
+	width: 100%;
+	display: table;
+}
+#header {
+	position: relative;
+	margin:auto;
+	padding:0;
+	width: 100%;
+	height: 138px;
+	background: url(../images/top.png) repeat-x top;
+	}
+#header2 {
+	position: relative;
+	margin: auto;
+	padding:0;
+	width: 950px;
+	height: 138px;
+	color: #FD0100;
+}
+#site_logo {
+	position: absolute;
+	top: 40px;
+	left: 0px;
+	width: 207px;
+	height: 98px;
+}
+h1#site_logo {
+	margin:0;
+	padding:0;
+	position: absolute;
+	top: 40px;
+	left: 0px;
+	width: 208px;
+	height: 98px;
+}
+h1#site_logo a {
+	padding: 0;
+	margin: 0;
+	display: block;
+	width: 208px;
+	height: 98px;
+}
+h1#logo a span {
+	display: none;
+}
+h2 {
+	margin: 0;
+}
+a {
+	color:#C33;
+	text-decoration:none;
+}
+/* MENU =============================*/
+.topmenu {
+	position: absolute;
+	right: 0px;
+	top: 52px;
+	margin: 0px;
+	width: 750px;
+	height: 60px;
+}
+.topmenu ul {
+	margin: 0px;
+	font: 16px Georgia;
+	font-weight: bold;
+	}
+.topmenu li {
+	list-style: none;
+	display: inline;
+	}
+.topmenu li a {
+	padding: 22px 10px 20px 10px;
+	text-decoration: none;
+	float: right;
+	color: #b3b3b3;
+	margin-left: -1px;
+	border-color:#7A6C6C;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-right-style:solid;
+	border-right-width:1px;
+}
+.topmenu li a:hover {
+	background: url(../images/menu.png) repeat-x;
+	color:#FFF;
+}
+.topmenu .active a{
+	background: url(../images/menu.png) repeat-x;
+	color:#FFF;
+}
+.d {
+	float:right;
+	height: 60px;
+	width: 1px;
+	background-color: #725e5e;
+}
+/* Content =============================*/
+#pagewrap {
+	width:100%;
+	margin:0px;
+	padding:0px;
+}
+#container {
+	margin:auto;
+	width:950px;
+}
+#content {
+	margin:auto;
+	width: 950px;
+}
+#left-col {
+	float: left;
+	width: 569px;
+}
+#right-col {
+	float: right;
+	width: 381px;
+}
+.side-link {
+	color:#C33;
+	text-decoration:none;
+	font-weight:bold;
+	display:block;
+}
+.content_box {
+	margin: 5px 10px 10px 5px;
+	padding: 7px;
+	padding-bottom:3px;
+	border: solid #CCC 1px;
+	background-color: #F0EEEC;
+	color: #3F3F3F;
+}
+.content_box ul.error {
+	padding:0px;
+	margin:0px;
+	color:red;
+	list-style: none;
+	font-style:italic;
+}
+.error_box {
+	position:fixed;
+	left:0px;
+	top:130px;
+	right:0px;
+	bottom:0px;
+	margin: 5px 10px 10px 5px;
+	padding: 7px;
+	padding-bottom:3px;
+	border: solid #CCC 1px;
+	background-color: #F0EEEC;
+	color: #3F3F3F;
+}
+#priority_messages ul {
+	padding-left:20px;
+	margin:0px;
+	font-style:italic;
+	list-style-type:square;
+}
+#priority_messages ul.success_message {
+	color:green;
+	list-style-type:none;
+}
+#priority_messages ul.error_message {
+	color:red;
+	list-style-type:none;
+}
+/* LOGIN */
+#syslogin {
+	position:absolute;
+	top:20px;
+	right:0px;
+	height:21px;
+	color:#C33;
+	font-size:16px;
+	font-weight:bold;
+}
+#syslogin a {
+	color:#b3b3b3;
+	text-decoration:none;
+}
+.fblogin {
+	background: url('../images/facebook_signin.png') no-repeat 0px -22px;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px -5px 0px;
+	display:inline-block;
+	width: 150px;
+	height: 23px;
+}
+/* LANGUAGE */
+#language_list {
+	position:absolute;
+	right:0px;
+}
+.language {
+	float: right;
+}
+/* FORM */
+.zend_form {
+
+}
+.zend_form input[type=text], [type=password] {
+	margin:2px;
+	height:25px;
+	width:200px;
+	background-color:#EDEDED;
+	border:1px solid #CCC;
+	font-size:14px;
+	color:#3F3F3F;
+}
+.zend_form input[type=file]{
+	margin:2px;
+	background-color:#EDEDED;
+	font-size:14px;
+	color:#3F3F3F;
+}
+.zend_form input[type=submit]{
+	height:25px;
+	padding:0px 10px 0px 10px;
+	background-color:#C33;
+	border:1px solid #CCC;
+	font-size:14px;
+	color:white;
+	cursor:pointer;
+}
+.zend_form textarea{
+	margin:2px;
+	height:250px;
+	width:90%;
+	background-color:#EDEDED;
+	border:1px solid #CCC;
+	font-size:14px;
+	color:#3F3F3F;
+}
+.zend_form ul.errors {
+	padding:0px;
+	margin:0px;
+	color:red;
+	list-style: none;
+	font-style:italic;
+}
+#footer {
+	clear: both;
+	margin: 5px 10px 10px 5px;
+	padding: 3px;
+	padding-bottom:3px;
+	border: solid #CCC 1px;
+	background-color: #F0EEEC;
+	color: #3F3F3F;
+}
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }

@@ -1,0 +1,27 @@
+<?php if($this->paginator): ?>
+	<div class="content_box">
+		<div align="right">
+			<strong>
+        <?php if($this->order=='asc'){?>
+        <a href="<?php echo $this->url(array('order'=>'desc'));?>"><?php echo Zend_Registry::get('Zend_Translate')->getAdapter()->translate('Kārtot dilstoši');?></a>
+        <?php }else{?>
+
+        <a href="<?php echo $this->url(array('order'=>'asc'));?>"><?php echo Zend_Registry::get('Zend_Translate')->getAdapter()->translate('Kārtot augoši');?></a>
+	
+    <?php }?>
+			</strong>
+		</div>
+	</div>
+        <?php foreach($this->paginator AS $key => $row): ?>
+            <div class="content_box">
+				<center><img src="<?php echo $row['logo'];?>" alt="<?php echo $row['title'];?>" /></center>
+				<strong><h2><a href="<?php echo $this->route."/turniri/skatit/id/".$row['tournamentId']; ?>"><?php echo $row['title'];?></a></h2></strong>
+				<p>
+				<?php echo $row['description'];?>
+				</p>
+            </div>
+        <?php endforeach; ?>
+    <?php echo $this->paginator; ?>
+<?php else: ?>
+No results.
+<?php endif; ?>

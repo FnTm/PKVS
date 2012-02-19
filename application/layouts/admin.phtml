@@ -1,0 +1,135 @@
+<?php
+/**
+ * The default layout file for the admin section
+ * @package Admin
+ * @subpackage Admin
+ */
+
+
+echo $this->doctype ();
+?>
+<html>
+<head>
+	<?php
+	echo $this->headMeta ();
+	?>
+	<?php
+	echo $this->headTitle ();
+	?>
+
+	<?php
+	echo $this->headLink ()->prependStylesheet ( $this->baseUrl () . '/css/admin.css' )->appendStylesheet ( $this->baseUrl () . '/css/form.css' )->appendStylesheet ( $this->baseUrl () . '/js/jquery/css/global.css' )->appendStylesheet ( $this->baseUrl () . '/js/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css' );;
+	?>
+	<?php
+
+	echo $this->jQuery ();
+	?>
+<?php
+
+	echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/JP.js', 'text/javascript', '' );
+	echo $this->headScript ()->appendFile ( $this->baseUrl ().'/js/jquery-ui-1.7.2.custom.min.js', 'text/javascript', '' );
+	?>
+
+	<script type="text/javascript">
+			$(function(){
+
+				// Accordion
+
+	
+				// Tabs
+				$('#tabs').tabs();
+
+				
+
+				
+				//hover states on the static widgets
+				$('#dialog_link, ul#icons li').hover(
+					function() { $(this).addClass('ui-state-hover'); }, 
+					function() { $(this).removeClass('ui-state-hover'); }
+				);
+				
+jQuery(document).ready(function(){
+	$('.accordion .head').click(function() {
+		$(this).next().toggle('slow');
+		return false;
+	}).next().hide();
+});
+				
+				
+			});
+		</script>
+<style>
+
+</style>
+
+</head>
+<body>
+
+<tr>
+	<td colspan="6"><a href="/"><img id="PD_INTRA_NEWa_04"
+		src="<?= APP_DOMAIN ?>/images/PD-INTRA-NEWa_04.gif" width="40" height="40" alt="" /></a></td>
+	<td rowspan="9">
+	<td><img id="PD_INTRA_NEWa_06" src="<?= APP_DOMAIN ?>/images/PD-INTRA-NEWa_06.gif"
+		width="40" height="40" alt="" /></td>
+
+	<td colspan="2"><img id="PD_INTRA_NEWa_08"
+		src="../../images/PD-INTRA-NEWa_08.gif" width="40" height="40" alt="" /></td>
+	<td><img id="PD_INTRA_NEWa_10" src="<?= APP_DOMAIN ?>/images/PD-INTRA-NEWa_10.gif"
+		width="40" height="40" alt="" /></td>
+
+</tr>
+<?php
+echo $this->title;
+?>
+
+		<div id="tabs" >
+			<ul style="text-align:center;">
+				<li><a href="#tabs-1">Mājaslapa</a></li>
+
+			</ul>
+			<div id="tabs-1">
+<table width="100%" cellspacing="10px"><tr>
+<td width="15%;" valign="top" class="ui-corner-all ui-widget-content" rowspan="2">
+
+
+<h4 align="center">Menu</h4>
+<?php
+//$partial_menu = array('menu.phtml', 'default');
+//$this->navigation()->menu()->setPartial($partial_menu);
+echo $this->navigation ()->menu ()->render ();
+?></div>
+
+</td>
+
+<td width="35%" align="center">
+<div><?php
+echo $this->layout ()->content;
+?>
+</td>
+
+                        
+                        
+                        <td width="35%" valign="top">
+
+
+</td>
+
+   						
+<tr valign="top">
+<td  colspan="2">
+
+
+</td>
+</tr>  
+</table>
+		</div>			
+</div>
+<table width="100%" style="color:grey;">
+<tr>
+<td align="right">
+Mājaslapa | Helpdesk sākumlapa | Zināšanu bāze | Kontakti
+</td>
+</tr>
+</table>
+</body>
+</html>

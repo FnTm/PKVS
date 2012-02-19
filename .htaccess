@@ -1,0 +1,12 @@
+SetEnv APPLICATION_ENV development
+
+RewriteRule  ^(browse|config).*  - [L]
+ErrorDocument 500 /error-docs/500.shtml
+SetEnv CACHE_OFFSET 2678400
+
+
+RewriteEngine On
+RewriteRule ^(adm|statistics) - [L]
+RewriteRule ^(.*)$ public/$1 [L]
+
+        

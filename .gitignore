@@ -1,0 +1,8 @@
+/.idea/
+/tmp/**
+.DS_Store
+nbproject
+/public/images/uploaded/*
+/public/attachments*
+/library/Zend
+/library/ZendX
