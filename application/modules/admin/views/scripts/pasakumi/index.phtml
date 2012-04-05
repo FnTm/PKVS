@@ -6,14 +6,14 @@
  * Time: 18:09
  */
 
-echo "<a href='".$this->url(array('action'=>"pievienot"))."'>Izveidot jaunu tipu</a>";
+echo "<a href='".$this->url(array('action'=>"pievienot"))."'>Izveidot jaunu pasakumu</a>";
 ?>
 
 <table>
     <thead><tr><th>Nosaukums</th><th>Apraksts</th><th>Darbības</th></tr></thead>
 <?php
  foreach ($this->types as $type) {
-    /** @var $type Model_Pasakumi_Type_Row */
+    /** @var $type Model_Pasakumi_Row */
     echo "<tr>";
     echo "<td>";
     echo $type->getTitle();

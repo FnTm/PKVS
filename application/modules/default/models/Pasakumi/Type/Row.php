@@ -12,7 +12,13 @@ class Model_Pasakumi_Type_Row extends Zend_Db_Table_Row_Abstract{
 
     }
     public function getTitle(){
-        return $this->title;
+        return $this->typeTitle;
+    }
+    public function getDescription(){
+        return $this->typeDescription;
+    }
+    public function getId(){
+        return $this->typeId;
     }
 
 }

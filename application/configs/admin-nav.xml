@@ -14,10 +14,10 @@
             <module>default</module>
             <controller>galerija</controller>
             <action>index</action>
-            <order>2</order>
+
 
         </galerijas>
-         <about>
+        <about>
             <label>Par mums</label>
             <module>default</module>
             <controller>par-mums</controller>
@@ -25,27 +25,54 @@
             <order>2</order>
 
         </about>
-         <dejotaji>
+
+        <pasakuma-tipi>
+            <label>Pasākuma tipi</label>
+            <uri>#</uri>
+            <resource>admin:pasakuma-tipi</resource>
+            <privilege>index</privilege>
+            <module>admin</module>
+            <controller>pasakuma-tipi</controller>
+            <action>index</action>
+            <pages>
+                <add>
+                    <label>Pievienot tipu</label>
+                    <module>admin</module>
+                    <controller>pasakuma-tipi</controller>
+                    <action>pievienot</action>
+                </add>
+            </pages>
+        </pasakuma-tipi>
+
+        <dejotaji>
             <label>Dejotāji</label>
             <module>default</module>
             <controller>dejotaji</controller>
             <action>index</action>
-            <order>2</order>
+
 
         </dejotaji>
-                <concerts>
-            <label>Koncerti</label>
+        <pasakumi>
+            <label>Pasakumi</label>
             <module>admin</module>
-            <controller>koncerti</controller>
+            <controller>pasakumi</controller>
             <action>index</action>
-            <order>1</order>
-        </concerts>
+             <pages>
+                <add>
+                    <label>Pievienot pasākumu</label>
+                    <module>admin</module>
+                    <controller>pasakumi</controller>
+                    <action>pievienot</action>
+                </add>
+            </pages>
+
+        </pasakumi>
         <contact>
             <label>Kontakti</label>
             <module>default</module>
             <controller>noma</controller>
             <action>index</action>
-            <order>1</order>
+
         </contact>
 
     </nav>
