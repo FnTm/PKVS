@@ -18,16 +18,10 @@ echo $this->doctype ();
 	?>
 
 	<?php
-	echo $this->headLink ()->prependStylesheet ( $this->baseUrl () . '/css/admin.css' )->appendStylesheet ( $this->baseUrl () . '/css/form.css' )->appendStylesheet ( $this->baseUrl () . '/js/jquery/css/global.css' )->appendStylesheet ( $this->baseUrl () . '/js/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css' );;
-	?>
-	<?php
-
-	echo $this->jQuery ();
+	echo $this->headLink ()->prependStylesheet ( $this->baseUrl () . '/css/admin.css' )->appendStylesheet ( $this->baseUrl () . '/css/form.css' )->appendStylesheet ( $this->baseUrl () . '/js/jquery/css/global.css' )->appendStylesheet ( $this->baseUrl () . '/js/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css' )->appendStylesheet ( $this->baseUrl () . '/css/ui.daterangepicker.css' );
 	?>
 <?php
-
-	echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/JP.js', 'text/javascript', '' );
-	echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/jquery-1.4.2.min.js', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery-ui-1.8.16.custom.min.php', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery.dateTime.js', 'text/javascript', '' );
+	echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/jquery-ui-1.8.16.custom.min.php', 'text/javascript', '' )->prependFile ($this->baseUrl (). '/js/jquery-1.6.2.min.js', 'text/javascript', '' );
         ?>
 <style>
     .ui-datepicker{
@@ -42,52 +36,16 @@ echo $this->doctype ();
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
 
 </style>
-    <script type="text/javascript">
-        $(function(){
-        $('#time').datetimepicker({timeFormat: 'hh:mm:ss', dateFormat:'yy-mm-dd',beforeShow: function(input) {
-   /** var x = 205; //add offset
-    var y = 245;
-    field = $(input);
-    left = field.position().left + x;
-    bottom = y;
-    setTimeout(function(){
-        $('#ui-datepicker-div').css({'top':'', 'bottom':bottom + 'px', 'left': left + 'px'});
-    },1);
-    */
-}});
-        });
-    </script>
 	<script type="text/javascript">
 			$(function(){
-
-				// Accordion
-
-	
 				// Tabs
 				$('#tabs').tabs();
 
-				
 
-				
-				//hover states on the static widgets
-				$('#dialog_link, ul#icons li').hover(
-					function() { $(this).addClass('ui-state-hover'); }, 
-					function() { $(this).removeClass('ui-state-hover'); }
-				);
-				
-jQuery(document).ready(function(){
-	$('.accordion .head').click(function() {
-		$(this).next().toggle('slow');
-		return false;
-	}).next().hide();
-});
-				
-				
+
 			});
 		</script>
-<style>
 
-</style>
 
 </head>
 <body>

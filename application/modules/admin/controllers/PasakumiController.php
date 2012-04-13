@@ -8,6 +8,8 @@
 class Admin_PasakumiController  extends JP_Controller_Action{
 
     public function indexAction(){
+        $pasakumiModel=new Model_Pasakumi();
+        $this->view->pasakumi=$pasakumiModel->getAllPasakumi();
 
     }
     public function pievienotAction(){

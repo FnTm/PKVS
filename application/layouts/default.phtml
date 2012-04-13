@@ -11,7 +11,7 @@ echo $this->doctype();
 <?php
     echo $this->headTitle();
     echo $this->headLink()->appendStylesheet($this->baseUrl() . '/css/style.css')->appendStylesheet($this->baseUrl() . '/js/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css');
-    echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/jquery-1.4.2.min.js', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery-ui-1.8.16.custom.min.php', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery.dateTime.js', 'text/javascript', '' );
+    echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/jquery-1.6.2.min.js', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery-ui-1.8.16.custom.min.php', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery.dateTime.js', 'text/javascript', '' );
     ?>
 
 <style>
@@ -29,22 +29,15 @@ echo $this->doctype();
 </style>
     <script type="text/javascript">
         $(function(){
-        $('#time').datetimepicker({timeFormat: 'hh:mm:ss', dateFormat:'yy-mm-dd',beforeShow: function(input) {
-    var x = 205; //add offset
-    var y = 245;
-    field = $(input);
-    left = field.position().left + x;
-    bottom = y;
-    setTimeout(function(){
-        $('#ui-datepicker-div').css({'top':'', 'bottom':bottom + 'px', 'left': left + 'px'});
-    },1);
-}});
+        $('#time').datetimepicker({timeFormat: 'hh:mm:ss', dateFormat:'yy-mm-dd'});
+
         });
     </script>
 </head>
 
 
 <body>
+<input id="time" />
 <div id="header">
     <div id="userHeader">
 
