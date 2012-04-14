@@ -12,8 +12,14 @@ class IndexController extends JP_Controller_Action
     {
             	    	//$this->_helper->layout->disableLayout();
         /** TODO Jāpievieno agregators */
+        if(Zend_Auth::getInstance()->hasIdentity()){
         $jaunumiModel=new Model_Jaunumi();
         $this->view->jaunumi=$jaunumiModel->getAllJaunumi();
+        }
+        else{
+            $this->_helper->layout->disableLayout();
+            $this->renderScript("index/index_guest.phtml");
+        }
         
     }
 

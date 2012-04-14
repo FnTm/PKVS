@@ -20,7 +20,7 @@ class Model_Pasakumi extends Zend_Db_Table_Abstract
     //TODO Sasaiste ar pasākuma izveidotāju, kategoriju
     public function getAllPasakumi()
     {
-        return $this->fetchAll();
+        return $this->getAdapter()->fetchAll($this->getAdapter()->select()->from($this->_name));
     }
 //TODO Sasaiste ar pasākuma izveidotāju, kategoriju
     public function getPasakums($id)

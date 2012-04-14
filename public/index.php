@@ -24,7 +24,7 @@ defined('BASE_URL') || define('BASE_URL', APP_DOMAIN);
 defined('APP_LOG_PATH') ||
  define('APP_LOG_PATH', realpath(dirname(__FILE__) . '/../logs'));
 // Define application environment
-defined('APPLICATION_ENV') || define('APPLICATION_ENV', 'testing');
+defined('APPLICATION_ENV') || define('APPLICATION_ENV', getenv("APPLICATION_ENV"));
 // Ensure library/ is on include_path
 set_include_path(
 implode(PATH_SEPARATOR,

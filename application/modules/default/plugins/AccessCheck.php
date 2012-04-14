@@ -14,33 +14,27 @@ class Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract
         $module = $request->getModuleName();
         $resource = $request->getControllerName();
         $action = $request->getActionName();
-        /*
 
-      var_dump(Zend_Registry::get('role'));
 
-      var_dump($module);
-      var_dump($resource);
-      var_dump($action);
-      var_dump($module.':'.$resource);
-      var_dump($this->_acl->isAllowed(Zend_Registry::get('role'), $module.':'.$resource, $action));*/
-       /** Testēšanas nolūkos, lai nelec visu laiku ārā paziņojumi par neeksistējošu resursu
-        try {
-            if (!$this->_acl->isAllowed(Zend_Registry::get('role'), $module . ':' . $resource, $action)) {
-                //$this->getActionController()->
-                var_dump($module);
-                var_dump($resource);
-                var_dump($action);
-                var_dump($module.':'.$resource);
+        /** Testēšanas nolūkos, lai nelec visu laiku ārā paziņojumi par neeksistējošu resursu */
+        if (APPLICATION_ENV == "production") {
+            try {
+                if (!$this->_acl->isAllowed(Zend_Registry::get('role'), $module . ':' . $resource, $action)) {
+                    //$this->getActionController()->
+                    var_dump($module);
+                    var_dump($resource);
+                    var_dump($action);
+                    var_dump($module . ':' . $resource);
 
-                $request->setControllerName('authentication')->setModuleName('default')
-                        ->setActionName('login');
+                    $request->setControllerName('authentication')->setModuleName('default')
+                            ->setActionName('login');
+                }
+            }
+            catch (Exception $ex) {
+                var_dump($ex);
+
             }
         }
-        catch (Exception $ex) {
-        var_dump($ex);
-
-        }
-* */
     }
 
 }
