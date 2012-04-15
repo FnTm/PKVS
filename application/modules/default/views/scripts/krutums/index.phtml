@@ -1,0 +1,16 @@
+<table>
+    <thead>
+    <tr><th>Vārds,Uzvārds</th><th>Krutums</th></tr>
+
+    </thead>
+<?php
+
+foreach($this->krutums as $krutums){
+    echo "<tr>";
+    echo "<td>".$krutums['name']."</td><td>".$krutums['krutumsCombined']."</td>";
+     echo "</tr>";
+}
+
+?>
+    </table>
+

@@ -21,20 +21,19 @@
 class Model_Users extends Zend_Db_Table_Abstract
 {
     public $_name = 'users';
-    protected $_rowClass="Model_User_Row";
-
+    protected $_rowClass = "Model_User_Row";
 
 
     public function createDraugiemUser($data)
     {
         $row = $this->createRow();
-         
+
 
         // set the row data
-        $row->name = $data['name']." ".$data['surname'];
+        $row->name = $data['name'] . " " . $data['surname'];
         $row->role = 'user';
         $row->email = "sdf";
-        $row->icon= $data['img'];
+        $row->icon = $data['img'];
 
         $row->draugiemId = $data['uid'];
         $row->registered = date('Y-m-d H:i:s');
@@ -44,6 +43,8 @@ class Model_Users extends Zend_Db_Table_Abstract
 
         // now fetch the id of the row you just created and return it
         $id = $this->_db->lastInsertId();
+        $krutumsModel = new Model_Krutums();
+        $krutumsModel->addKrutums($id, $krutumsModel::REGISTER_EVENT, "reģistrēšanos", "1");
         return $id;
     }
 
@@ -105,21 +106,28 @@ class Model_Users extends Zend_Db_Table_Abstract
         $select->order('created desc');
         return $this->fetchAll($select);
     }
-    public function getUsers(){
+
+    public function getUsers()
+    {
         return $this->fetchAll()->toArray();
     }
+
     public function checkUsernameExists($username)
     {
         $return = $this->fetchAll($this->select()->where('username=?', $username))->toArray();
         /** Pievienojam mainīgajam, jo empty() māk pārbaudīt tikai mainīgos. */
         return !empty($return);
     }
-    public function approve($id){
+
+    public function approve($id)
+    {
         $data['isApproved'] = 1;
         $where = $this->getAdapter()->quoteInto('userId = ?', $id);
         $this->update($data, $where);
     }
-    public function disapprove($id){
+
+    public function disapprove($id)
+    {
         $data['isApproved'] = 0;
         $where = $this->getAdapter()->quoteInto('userId = ?', $id);
         $this->update($data, $where);

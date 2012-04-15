@@ -10,6 +10,6 @@ class KrutumsController extends JP_Controller_Action{
     public function indexAction(){
 
     $krutumsModel=new Model_Krutums();
-        var_dump($krutumsModel->getAll());
+$this->view->krutums=$krutumsModel->getAll();
     }
 }
