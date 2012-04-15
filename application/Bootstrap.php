@@ -7,12 +7,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $modelLoader = new Zend_Application_Module_Autoloader(
             array('namespace' => '',
-                 'basePath' => APPLICATION_PATH . '/modules/default'));
+                'basePath' => APPLICATION_PATH . '/modules/default'));
 
         return $modelLoader;
     }
-    protected function _initloadDraugiemConfig(){
-        $draugiemConf=new Zend_Config_Ini(APPLICATION_PATH.'/configs/draugiem.config.ini',APPLICATION_ENV);
+
+    protected function _initloadDraugiemConfig()
+    {
+        $draugiemConf = new Zend_Config_Ini(APPLICATION_PATH . '/configs/draugiem.config.ini', APPLICATION_ENV);
         Zend_Registry::set("draugiemOptions", $draugiemConf->draugiem);
         /** @var $draugiem Zend_Config_Ini */
         /*$draugiem=Zend_Registry::get("draugiemOptions");
@@ -22,10 +24,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initACL()
     {
-        
+
         if (Zend_Auth::getInstance()->hasIdentity()) {
             Zend_Registry::set('role',
-                               Zend_Auth::getInstance()->getStorage()->read()->role);
+                Zend_Auth::getInstance()->getStorage()->read()->role);
         } else {
             Zend_Registry::set('role', 'guest');
         }
@@ -45,16 +47,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->addHelperPath("JP/Controller/Helper", "JP_Controller_Helper");
         $view->addHelperPath("JP/View/Helper", "JP_View_Helper");
         $view->addHelperPath("ZendX/JQuery/View/Helper",
-                             "ZendX_JQuery_View_Helper");
+            "ZendX_JQuery_View_Helper");
         Zend_Controller_Action_HelperBroker::addHelper(
             new JP_Controller_Helper_AuthenticationLoader());
         $view->doctype('HTML4_STRICT');
         $view->headMeta()
-                ->appendHttpEquiv('Content-type', 'text/html;charset=utf-8')
-                ->appendName('description', 'TDA Pūpolītis');
+            ->appendHttpEquiv('Content-type', 'text/html;charset=utf-8')
+            ->appendName('description', 'TDA Pūpolītis');
         $view->headTitle()
-                ->setSeparator(' - ')
-                ->headTitle('TDA Pūpolītis');
+            ->setSeparator(' - ')
+            ->headTitle('TDA Pūpolītis');
     }
 
     protected function _initAutoloaders()
@@ -72,12 +74,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view = new Zend_View();
         // $view->addHelperPath('ZendX/JQuery/View/Helper/', 'ZendX_JQuery_View_Helper');
         $view->addHelperPath("ZendX/JQuery/View/Helper",
-                             "ZendX_JQuery_View_Helper");
+            "ZendX_JQuery_View_Helper");
         $view->jQuery()
-                ->addStylesheet(
+            ->addStylesheet(
             '/js/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css')
-                ->setLocalPath('/js/jquery/jquery.php')
-                ->setUiLocalPath('/js/jquery-ui-1.8.16.custom.min.php');
+            ->setLocalPath('/js/jquery/jquery.php')
+            ->setUiLocalPath('/js/jquery-ui-1.8.16.custom.min.php');
         $view->jQuery()->enable();
         ZendX_JQuery::enableView($view);
         return $view;
@@ -93,7 +95,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initDataCache()
     {
         $frontend = array("lifetime" => 360000, // cache lifetime of 10 hours (time is in seconds)
-                          "automatic_serialization" => true); //default is false
+            "automatic_serialization" => true); //default is false
         $cachedir = APPLICATION_PATH . "/../tmp";
         if (!is_dir($cachedir)) {
             mkdir($cachedir, 0755);
@@ -101,12 +103,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $backend = array('cache_dir' => $cachedir);
         // Getting a Zend_Cache_Core object
         $zend_cache = Zend_Cache::factory("Core", "File", $frontend,
-                                          $backend);
+            $backend);
         Zend_Registry::set('cache', $zend_cache);
         $frontend = array("lifetime" => 720, // cache lifetime of 10 hours (time is in seconds)
-                          "automatic_serialization" => true); //default is false
+            "automatic_serialization" => true); //default is false
         $short_cache = Zend_Cache::factory("Core", "File", $frontend,
-                                           $backend);
+            $backend);
         Zend_Registry::set('shortcache', $short_cache);
         Zend_Db_Table_Abstract::setDefaultMetadataCache($zend_cache);
     }
@@ -121,8 +123,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initLoggers()
     {
         $loggers = array('framework', 'database', 'import', 'admin', 'login',
-                         'minifeed', 'signoff', 'notification', 'cron', 'newsletter', 'mail',
-                         'upload', 'application', 'pdf', 'export');
+            'minifeed', 'signoff', 'notification', 'cron', 'newsletter', 'mail',
+            'upload', 'application', 'pdf', 'export');
         Zend_Registry::set('loggers', $loggers);
         $logFormat = date('r') . ', "%message%" (%priorityName%)' . PHP_EOL;
         $simpleFormatter = new Zend_Log_Formatter_Simple($logFormat);
@@ -150,12 +152,20 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
 
         $this->bootstrap('layout');
-        $view = $this->getResource('layout')->getView();
+        $layout = $this->getResource('layout');
+        $view = $layout->getView();
         $config = new Zend_Config_Xml(APPLICATION_PATH . '/configs/nav.xml', 'nav');
         //var_dump($config->toArray());
         $nav = new Zend_Navigation($config);
         //var_dump($nav);
-        $view->navigation($nav);
+        $view->navigation($nav)->setAcl($this->_acl)
+            ->setRole(Zend_Registry::get('role'));
+
+        $navContainerConfig = new Zend_Config_Xml(
+            APPLICATION_PATH . '/configs/admin-nav.xml', 'nav');
+        $navContainer = new Zend_Navigation($navContainerConfig);
+        $layout->adminMenu = $navContainer;
+
     }
 
     protected function _initRoutes()
