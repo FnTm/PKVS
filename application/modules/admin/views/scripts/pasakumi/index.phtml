@@ -16,13 +16,15 @@ echo "<a href='".$this->url(array('action'=>"pievienot"))."'>Izveidot jaunu pasa
     /** @var $type Model_Pasakumi_Row */
     echo "<tr>";
     echo "<td>";
-    echo $type->getTitle();
+    echo $type['pasakumsTitle'];
     echo "</td>";
     echo "<td>";
-    echo $type->getDescription();
+    echo $type['pasakumsDescription'];
     echo "</td>";
         echo "<td>";
-    echo "<a href='".$this->url(array('action'=>"rediget",'id'=>$type->getId()))."'>Rediģēt</a>";
+    echo "<a href='".$this->url(array('action'=>"rediget",'id'=>$type['pasakumsId']))."'>Rediģēt</a>";
+    echo "&nbsp;/&nbsp;<a href='".$this->url(array('action'=>"rediget",'id'=>$type['pasakumsId']))."'>Apmeklētība</a>";
+
     echo "</td>";
     echo "</tr>";
 
