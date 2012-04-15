@@ -33,7 +33,7 @@ class Model_AuthAcl extends Zend_Acl
             ->add(new Zend_Acl_Resource('default:error'), 'default')
             ->add(new Zend_Acl_Resource('default:js'), 'default')
             ->add(new Zend_Acl_Resource('default:css'), 'default');
-        $this->allow('guest');
+        $this->deny('guest');
         $this->allow('guest', 'default:index', 'index');
 //        $this->allow('guest', 'default:pasakumi');
 //        $this->allow('guest', 'default:js', 'index');

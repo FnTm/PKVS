@@ -141,6 +141,6 @@ class JP_Auth_Adapter_Draugiem implements Zend_Auth_Adapter_Interface
             return new Zend_Auth_Result(Zend_Auth_Result::SUCCESS, $data['uid'], array('user' => $user, 'token' => $data['apikey']));
         }
 
-        return new Zend_Auth_Result(Zend_Auth_Result::FAILURE, null, 'Lietotājs neatļāva piekļuvi saviem datiem');
+        return new Zend_Auth_Result(Zend_Auth_Result::FAILURE, null, array('error'=>'Lietotājs neatļāva piekļuvi saviem datiem'));
     }
 }

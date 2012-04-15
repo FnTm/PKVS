@@ -11,10 +11,10 @@ echo $this->doctype();
 <?php
     echo $this->headTitle();
     echo $this->headLink()->appendStylesheet($this->baseUrl() . '/css/style.css')->appendStylesheet($this->baseUrl() . '/js/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css');
-    echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/jquery-1.6.2.min.js', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery-ui-1.8.16.custom.min.php', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery.dateTime.js', 'text/javascript', '' );
+    echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/jquery-1.6.2.min.js', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery-ui-1.8.16.custom.min.php', 'text/javascript', '' );
     ?>
 
-<style>
+<style type="text/css">
     .ui-datepicker{
        font-size: 11px;
         
@@ -27,17 +27,11 @@ echo $this->doctype();
 .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
 
 </style>
-    <script type="text/javascript">
-        $(function(){
-        $('#time').datetimepicker({timeFormat: 'hh:mm:ss', dateFormat:'yy-mm-dd'});
 
-        });
-    </script>
 </head>
 
 
 <body>
-<input id="time" />
 <div id="header">
     <div id="userHeader">
 

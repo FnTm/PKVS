@@ -20,7 +20,7 @@
 
 class Model_Users extends Zend_Db_Table_Abstract
 {
-    protected $_name = 'users';
+    public $_name = 'users';
     protected $_rowClass="Model_User_Row";
 
 

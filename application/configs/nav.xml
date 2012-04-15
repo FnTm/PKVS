@@ -8,7 +8,15 @@
             <action>index</action>
             <order>3</order>
         </home>
+         <galerijas>
+            <label>Krutums</label>
+            <module>default</module>
+            <controller>krutums</controller>
+            <action>index</action>
+            <order>2</order>
 
+        </galerijas>
+<!--
         <galerijas>
             <label>Galerijas</label>
             <module>default</module>
@@ -48,6 +56,6 @@
             <action>index</action>
             <order>1</order>
         </contact>
-
+-->
     </nav>
 </configdata>
