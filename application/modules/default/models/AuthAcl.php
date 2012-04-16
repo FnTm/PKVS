@@ -21,7 +21,7 @@ class Model_AuthAcl extends Zend_Acl
             ->add(new Zend_Acl_Resource('admin:idea'), 'admin')
             ->add(new Zend_Acl_Resource('admin:instr'), 'admin')
             ->add(new Zend_Acl_Resource('admin:links'), 'admin')
-            ->add(new Zend_Acl_Resource('admin:koncerti'), 'admin')
+            ->add(new Zend_Acl_Resource('admin:pasakumi'), 'admin')
             ->add(new Zend_Acl_Resource('admin:menu'), 'admin')
             ->add(new Zend_Acl_Resource('admin:pasakuma-tipi'), 'admin')
             ->add(new Zend_Acl_Resource('admin:apmekletiba'), 'admin')

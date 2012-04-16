@@ -42,10 +42,12 @@ class Admin_ApmekletibaController extends JP_Controller_Action
                     $userId = $split[1];
                     var_dump($userId);
                     $apmModel->updateApmeklejums($id, $userId, $user);
-                   // $this->_redirect("/admin/apmekletiba/rediget/id/".$id);
+                    //TODO Fix redirecting
+
                 }
 
             }
+            $this->_redirect("/admin/pasakumi");
             /*if($form->isValid($data)){
 
                 $apmTipsModel->insert($form->getValidValues($data));
