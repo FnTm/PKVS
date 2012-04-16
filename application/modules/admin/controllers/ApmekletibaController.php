@@ -24,6 +24,7 @@ class Admin_ApmekletibaController extends JP_Controller_Action
     public function redigetAction()
     {
         $apmModel = new Model_Apmekletiba();
+
         $apmTipsModel = new Model_Apmekletiba_Tips();
         $this->view->id = $id = $this->_getParam("id");
         $this->view->types = $apmTipsModel->getAll();

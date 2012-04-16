@@ -1,0 +1,22 @@
+<div class="content_box">
+    <h2><a href="/pasakumi/skatit/id/<?php echo $this->pasakums['pasakumsId'];?>"><?php echo $this->pasakums['pasakumsTitle']; ?></a></h2>
+    [<?php echo date("d/m/Y H:i",strtotime($this->pasakums['pasakumsTime']));?>]<br/>
+    <p>
+        <?php echo $this->pasakums['pasakumsDescription']; ?>
+    </p>
+    <p>
+    <table>
+        <?php
+
+        foreach($this->apmeklejums as $apm){
+            echo "<tr style='background-color: ".$apm['apmekletibaTipsColor']."'>";
+            // var_dump($apm);
+            echo "<td><img src='".$apm['icon']."' alt='".$apm['name']."'></td>";
+            echo "<td>".$apm['name']."</td>";
+            echo "<td>".$apm['apmekletibaTipsTitle']."</td>";
+            echo "<tr>";
+        }?>
+    </table>
+    </p>
+</div>
+

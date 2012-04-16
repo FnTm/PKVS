@@ -25,7 +25,7 @@ class Model_Pasakumi extends Zend_Db_Table_Abstract
 //TODO Sasaiste ar pasākuma izveidotāju, kategoriju
     public function getPasakums($id)
     {
-        return $this->fetchAll($this->select()->where("pasakumsId=?", $id));
+        return $this->fetchRow($this->select()->where("pasakumsId=?", $id));
     }
 
 

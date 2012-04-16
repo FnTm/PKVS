@@ -15,9 +15,8 @@ class Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract
         $resource = $request->getControllerName();
         $action = $request->getActionName();
 
-
         /** Testēšanas nolūkos, lai nelec visu laiku ārā paziņojumi par neeksistējošu resursu */
-        if (APPLICATION_ENV == "production") {
+       // if (APPLICATION_ENV == "production") {
             try {
                 if (!$this->_acl->isAllowed(Zend_Registry::get('role'), $module . ':' . $resource, $action)) {
                     //$this->getActionController()->
@@ -25,16 +24,15 @@ class Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract
                     var_dump($resource);
                     var_dump($action);
                     var_dump($module . ':' . $resource);
-
                     $request->setControllerName('authentication')->setModuleName('default')
                             ->setActionName('login');
                 }
             }
             catch (Exception $ex) {
-                var_dump($ex);
+                var_dump($ex->getMessage());
 
             }
-        }
+       // }
     }
 
 }

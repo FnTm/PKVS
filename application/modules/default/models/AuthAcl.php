@@ -23,12 +23,14 @@ class Model_AuthAcl extends Zend_Acl
             ->add(new Zend_Acl_Resource('admin:links'), 'admin')
             ->add(new Zend_Acl_Resource('admin:koncerti'), 'admin')
             ->add(new Zend_Acl_Resource('admin:menu'), 'admin')
-            ->add(new Zend_Acl_Resource('admin:registry'), 'admin')
+            ->add(new Zend_Acl_Resource('admin:pasakuma-tipi'), 'admin')
             ->add(new Zend_Acl_Resource('admin:user'), 'admin');
         $this->add(new Zend_Acl_Resource('default'))
             ->add(new Zend_Acl_Resource('default:authentication'), 'default')
          ->add(new Zend_Acl_Resource('default:pasakumi'), 'default')
-        ->add(new Zend_Acl_Resource('default:dalibnieki'), 'default')
+            ->add(new Zend_Acl_Resource('default:lietotajs'), 'default')
+            ->add(new Zend_Acl_Resource('default:krutums'), 'default')
+            ->add(new Zend_Acl_Resource('default:dalibnieki'), 'default')
             ->add(new Zend_Acl_Resource('default:index'), 'default')
             ->add(new Zend_Acl_Resource('default:error'), 'default')
             ->add(new Zend_Acl_Resource('default:js'), 'default')
@@ -41,6 +43,9 @@ class Model_AuthAcl extends Zend_Acl
 //        $this->allow('guest', 'default:index', 'visits');
         $this->allow('guest', 'default:authentication', array('login', 'logout'));
 //        $this->allow('guest', 'default:error', 'error');
+        $this->allow('user','default:krutums');
+        $this->allow('user','default:lietotajs',array('profils'));
+        $this->allow('user','default:pasakumi',array('skatit'));
         $this->allow('editor', 'admin');
 
         $this->allow('admin');
