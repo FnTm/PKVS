@@ -27,22 +27,39 @@
         </about>
 
         <pasakuma-tipi>
-            <label>Pasākuma tipi</label>
+        <label>Pasākuma tipi</label>
+        <uri>#</uri>
+        <resource>admin:pasakuma-tipi</resource>
+        <privilege>index</privilege>
+        <module>admin</module>
+        <controller>pasakuma-tipi</controller>
+        <action>index</action>
+        <pages>
+            <add>
+                <label>Pievienot tipu</label>
+                <module>admin</module>
+                <controller>pasakuma-tipi</controller>
+                <action>pievienot</action>
+            </add>
+        </pages>
+    </pasakuma-tipi>
+        <apmekletiba-tips>
+            <label>Apmeklētības tipi</label>
             <uri>#</uri>
-            <resource>admin:pasakuma-tipi</resource>
+            <resource>admin:apmekletiba-tips</resource>
             <privilege>index</privilege>
             <module>admin</module>
-            <controller>pasakuma-tipi</controller>
+            <controller>apmekletiba-tips</controller>
             <action>index</action>
             <pages>
                 <add>
                     <label>Pievienot tipu</label>
                     <module>admin</module>
-                    <controller>pasakuma-tipi</controller>
+                    <controller>apmekletiba-tips</controller>
                     <action>pievienot</action>
                 </add>
             </pages>
-        </pasakuma-tipi>
+        </apmekletiba-tips>
 
         <dejotaji>
             <label>Dejotāji</label>

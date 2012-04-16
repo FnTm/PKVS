@@ -2,7 +2,32 @@
 /**
 
  * User: Janis
- * Date: 12.15.4
- * Time: 09:50
+ * Date: 12.22.3
+ * Time: 18:09
  */
- 
+
+echo "<a href='".$this->url(array('action'=>"pievienot"))."'>Izveidot jaunu tipu</a>";
+?>
+
+<table>
+    <thead><tr><th>ID</th><th>Apraksts</th><th>Darbības</th></tr></thead>
+<?php
+ foreach ($this->types as $type) {
+    echo "<tr>";
+    echo "<td>";
+    echo $type->apmekletibaTipsId;
+    echo "</td>";
+    echo "<td>";
+    echo $type->apmekletibaTipsTitle;
+    echo "</td>";
+        echo "<td>";
+    echo "<a href='".$this->url(array('action'=>"rediget",'id'=>$type->apmekletibaTipsId))."'>Rediģēt</a>";
+    echo "</td>";
+    echo "</tr>";
+
+}
+
+
+    ?>
+
+</table>

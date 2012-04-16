@@ -14,12 +14,16 @@ class Model_Pasakumi_Type extends Zend_Db_Table_Abstract
 {
     public $_name = "pasakumiType";
     public $_rowClass = "Model_Pasakumi_Type_Row";
+    public $_primary="typeId";
 
     public function getAll(){
         return $this->fetchAll();
     }
     public function createType($data){
         return $this->insert($data);
+    }
+    public function deleteType($id){
+        $this->delete(array($this->_primary=>$id));
     }
 
 }

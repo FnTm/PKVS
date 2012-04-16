@@ -48,5 +48,11 @@ class Admin_PasakumaTipiController  extends JP_Controller_Action{
     public function redigetAction(){
 
     }
+    public function dzestAction(){
+        $id=$this->_getParam("id");
+        $typeModel=new Model_Pasakumi_Type();
+        $typeModel->deleteType($id);
+        $this->_redirect("/admin/pasakuma-tipi/");
+    }
 
 }
