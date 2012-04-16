@@ -20,12 +20,17 @@ echo "<th>".$type['apmekletibaTipsTitle']."</th>";
     <tbody>
     <?php
 
+
     foreach ($this->users as $user) {
 
         echo "<tr>";
         echo "<td>" . $user['name'] . "</td>";
         foreach ($this->types as $type) {
-            echo "<td><input type='radio' name='user_".$user['userId']."' value='".$type['apmekletibaTipsId']."'/></td>";
+            $selected="";
+            if(isset($this->apm[$user['userId']]) && $this->apm[$user['userId']]['apmekletibaTipsId']==$type['apmekletibaTipsId'] ){
+                $selected="checked";
+            }
+            echo "<td><input type='radio' $selected name='user_".$user['userId']."' value='".$type['apmekletibaTipsId']."'/></td>";
         }
         echo "</tr>";
 

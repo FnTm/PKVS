@@ -62,9 +62,9 @@
         </apmekletiba-tips>
 
         <dejotaji>
-            <label>Dejotāji</label>
-            <module>default</module>
-            <controller>dejotaji</controller>
+            <label>Lietotāji</label>
+            <module>admin</module>
+            <controller>user</controller>
             <action>index</action>
 
 

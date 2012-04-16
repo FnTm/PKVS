@@ -123,6 +123,8 @@ class Model_Users extends Zend_Db_Table_Abstract
     {
         $data['isApproved'] = 1;
         $where = $this->getAdapter()->quoteInto('userId = ?', $id);
+        $krutums=new Model_Krutums();
+        $krutums->addKrutums($id,$krutums::REGISTER_EVENT,"Par reģistrēšanos",1);
         $this->update($data, $where);
     }
 
@@ -130,6 +132,8 @@ class Model_Users extends Zend_Db_Table_Abstract
     {
         $data['isApproved'] = 0;
         $where = $this->getAdapter()->quoteInto('userId = ?', $id);
+        $krutums=new Model_Krutums();
+        $krutums->addKrutums($id,$krutums::REGISTER_EVENT,"Par izslēgšanu",-1);
         $this->update($data, $where);
     }
 

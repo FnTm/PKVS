@@ -27,20 +27,22 @@ class Admin_ApmekletibaController extends JP_Controller_Action
 
         $apmTipsModel = new Model_Apmekletiba_Tips();
         $this->view->id = $id = $this->_getParam("id");
+        $this->view->apm=$apmModel->getApmeklejumsByEventId($id,true);
         $this->view->types = $apmTipsModel->getAll();
         $this->view->users = $this->_userModel->getUsers();
         $this->view->form = $form = new Admin_Form_ApmekletibaTips_Pievienot();
         $form->setAction("/admin/apmekletiba-tips/pievienot");
         if ($this->getRequest()->isPost()) {
             $data = $this->_getAllParams();
-            var_dump($data);
+
             foreach ($data as $key => $user) {
                 if (strpos($key, "user_") !== false) {
 
                     $split = explode("user_", $key);
                     $userId = $split[1];
-
-                    $apmModel->insertApmeklejums($id, $userId, $user);
+                    var_dump($userId);
+                    $apmModel->updateApmeklejums($id, $userId, $user);
+                   // $this->_redirect("/admin/apmekletiba/rediget/id/".$id);
                 }
 
             }
