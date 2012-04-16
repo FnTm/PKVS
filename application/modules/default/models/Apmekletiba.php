@@ -9,4 +9,9 @@
 class Model_Apmekletiba extends Zend_Db_Table_Abstract
 {
     public $_name = "apmekletiba";
+
+    public function insertApmeklejums($eventId,$userId,$apmId){
+        $data=array('apmekletibaUserId'=>$userId,'apmekletibaEventId'=>$eventId,'apmekletibaTipsId'=>$apmId);
+        $this->insert($data);
+    }
 }

@@ -1,0 +1,41 @@
+<?php
+/**
+ * User: Janis
+ * Date: 12.22.3
+ * Time: 18:12
+ */
+?>
+<form action="/admin/apmekletiba/rediget/id/<?php echo $this->id;?>" method="POST">
+<table>
+    <thead>
+    <tr>
+        <th>Lietotājs</th>
+        <?php foreach ($this->types as $type) {
+echo "<th>".$type['apmekletibaTipsTitle']."</th>";
+    }
+        ?>
+    </tr>
+
+    </thead>
+    <tbody>
+    <?php
+
+    foreach ($this->users as $user) {
+
+        echo "<tr>";
+        echo "<td>" . $user['name'] . "</td>";
+        foreach ($this->types as $type) {
+            echo "<td><input type='radio' name='user_".$user['userId']."' value='".$type['apmekletibaTipsId']."'/></td>";
+        }
+        echo "</tr>";
+
+    }
+    ?>
+
+    </tbody>
+
+
+</table>
+    <input type="submit"/>
+</form>
+

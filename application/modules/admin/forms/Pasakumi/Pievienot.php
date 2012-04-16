@@ -13,7 +13,7 @@ class Admin_Form_Pasakumi_Pievienot extends JP_Form
         $this->addElement($this->createElement('textarea', 'pasakumsDescription')->setLabel('Pasākuma apraksts'));
         $this->addElement($typeParent = $this->createElement('select', 'pasakumsCategory')->setLabel('Pasākuma kategorija'));
         /**@todo pievienot jquery lauka tūli */
-        $this->addElement($this->createElement('text', 'pasakumsLocation')->setLabel("Pasākuma nosaukums")->setRequired(true));
+        $this->addElement($this->createElement('text', 'pasakumsLocation')->setLabel("Pasākuma norises vieta")->setRequired(true));
 
         $this->addElement($this->createElement('dateTime', 'pasakumsTime')->setLabel('Pasākuma norises datums un laiks'));
         $this->addElement($this->createElement('file', 'pasakumsImage')->setLabel('Pasākuma logo'));
