@@ -11,8 +11,8 @@ class Admin_IndexController extends JP_Controller_Action
     public function indexAction()
     {
         $turniriModel=new Model_Pasakumi();
-        $this->view->tuvakie=$turniriModel->getClosestTurniri();
-       // $this->addLink('/turniri/pievienot/','add_tournament','u');
+        $this->view->tuvakie=$turniriModel->getAllPasakumi();
+
 
     }
     public function changeAction(){

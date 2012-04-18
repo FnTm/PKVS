@@ -43,8 +43,6 @@ class Model_Users extends Zend_Db_Table_Abstract
 
         // now fetch the id of the row you just created and return it
         $id = $this->_db->lastInsertId();
-        $krutumsModel = new Model_Krutums();
-        $krutumsModel->addKrutums($id, $krutumsModel::REGISTER_EVENT, "reģistrēšanos", "1");
         return $id;
     }
 
@@ -106,9 +104,17 @@ class Model_Users extends Zend_Db_Table_Abstract
         $select->order('created desc');
         return $this->fetchAll($select);
     }
-
-    public function getUsers()
+/**
+ * Get all users
+ * @param bool $enabled If false, gets all, not only enabled users
+ * @return array
+ */
+    public function getUsers($enabled=true)
     {
+        $select=null;
+        if($enabled){
+            $select=$this->select()->where('isApproved=?',(int)$enabled);
+        }
         return $this->fetchAll()->toArray();
     }
 

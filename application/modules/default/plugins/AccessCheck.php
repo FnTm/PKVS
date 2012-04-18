@@ -16,7 +16,7 @@ class Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract
         $action = $request->getActionName();
 
         /** Testēšanas nolūkos, lai nelec visu laiku ārā paziņojumi par neeksistējošu resursu */
-       // if (APPLICATION_ENV == "production") {
+        if (APPLICATION_ENV == "production") {
             try {
                 if (!$this->_acl->isAllowed(Zend_Registry::get('role'), $module . ':' . $resource, $action)) {
                     //$this->getActionController()->
@@ -32,7 +32,7 @@ class Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract
                 var_dump($ex->getMessage());
 
             }
-       // }
+        }
     }
 
 }
