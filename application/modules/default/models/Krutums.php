@@ -11,6 +11,7 @@ class Model_Krutums extends Zend_Db_Table_Abstract
     protected $_krutums = "krutumsCombined";
     const REGISTER_EVENT = 2;
     const OTHER_EVENT = 1;
+    const ATTENDANCE_EVENT=3;
 
     public function getAll()
     {

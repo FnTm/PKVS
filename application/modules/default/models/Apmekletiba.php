@@ -63,9 +63,9 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
                     $krutums = +abs($krutumsValue);
                 }
 
-                $krutumsModel->addKrutums($userId, $krutumsModel::OTHER_EVENT, "Mainīts apmeklējums pasākumam " . $eventId, $krutums);
+                $krutumsModel->addKrutums($userId, $krutumsModel::ATTENDANCE_EVENT, "Mainīts apmeklējums pasākumam " . $eventId, $krutums);
                 $krutums = $apmKrutModel->getKrutumsValue($apmId,$fetch['pasakumsCategory']);
-                $krutumsModel->addKrutums($userId, $krutumsModel::OTHER_EVENT, "Mainīts apmeklējums pasākumam " . $eventId, $krutums['krutumsValue']);
+                $krutumsModel->addKrutums($userId, $krutumsModel::ATTENDANCE_EVENT, "Mainīts apmeklējums pasākumam " . $eventId, $krutums['krutumsValue']);
 
                 $data = array('apmekletibaTipsId' => $apmId);
                 $this->update($data, "apmekletibaEventId='$eventId' and apmekletibaUserId='$userId'");
@@ -73,7 +73,7 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
         }
         else {
             $krutums = $apmKrutModel->getKrutumsValue($apmId,$fetch['pasakumsCategory']);
-            $krutumsModel->addKrutums($userId, $krutumsModel::OTHER_EVENT, "Par pasākumu " . $eventId, $krutums['krutumsValue']);
+            $krutumsModel->addKrutums($userId, $krutumsModel::ATTENDANCE_EVENT, "Par pasākumu " . $eventId, $krutums['krutumsValue']);
 
             $this->insertApmeklejums($eventId, $userId, $apmId);
         }

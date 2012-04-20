@@ -1,0 +1,11 @@
+<?php foreach ($this->pasakumi as $pasakums) { ?>
+<div class="content_box">
+
+    <h2><a href="/pasakumi/skatit/id/<?php echo $pasakums['pasakumsId'];?>"><?php echo $pasakums['pasakumsTitle']; ?></a></h2>
+    [<?php echo date("d/m/Y H:i",strtotime($pasakums['pasakumsTime']));?>]<br/>
+    <p>
+        <?php echo $pasakums['pasakumsDescription']; ?>
+    </p>
+    <div><a href="/pasakumi/skatit/id/<?php echo $pasakums['pasakumsId'];?>">Apmeklējums</a></div>
+</div>
+<?php } ?>

@@ -10,8 +10,8 @@ class Admin_IndexController extends JP_Controller_Action
 
     public function indexAction()
     {
-        $turniriModel=new Model_Pasakumi();
-        $this->view->tuvakie=$turniriModel->getAllPasakumi();
+        $pasakumiModel=new Model_Pasakumi();
+        $this->view->pasakumi=$pasakumiModel->getAllPasakumi();
 
 
     }

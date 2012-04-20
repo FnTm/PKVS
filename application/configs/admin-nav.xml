@@ -84,6 +84,21 @@
             </pages>
 
         </pasakumi>
+        <krutums>
+            <label>Krutums</label>
+            <module>admin</module>
+            <controller>krutums</controller>
+            <action>index</action>
+            <pages>
+                <add>
+                    <label>Pievienot punktus</label>
+                    <module>admin</module>
+                    <controller>krutums</controller>
+                    <action>pievienot</action>
+                </add>
+            </pages>
+
+        </krutums>
         <contact>
             <label>Kontakti</label>
             <module>default</module>
