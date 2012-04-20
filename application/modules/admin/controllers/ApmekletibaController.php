@@ -29,7 +29,7 @@ class Admin_ApmekletibaController extends JP_Controller_Action
         $this->view->id = $id = $this->_getParam("id");
         $this->view->apm=$apmModel->getApmeklejumsByEventId($id,true);
         $this->view->types = $apmTipsModel->getAll();
-        $this->view->users = $this->_userModel->getUsers();
+        $this->view->users = $this->_userModel->getUsers(true);
         $this->view->form = $form = new Admin_Form_ApmekletibaTips_Pievienot();
         $form->setAction("/admin/apmekletiba-tips/pievienot");
         if ($this->getRequest()->isPost()) {
@@ -42,7 +42,7 @@ class Admin_ApmekletibaController extends JP_Controller_Action
                     $userId = $split[1];
                     var_dump($userId);
                     $apmModel->updateApmeklejums($id, $userId, $user);
-                    //TODO Fix redirecting
+
 
                 }
 

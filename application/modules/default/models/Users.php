@@ -51,6 +51,8 @@ class Model_Users extends Zend_Db_Table_Abstract
 
 
         if (NULL != $row = $this->getDraugiemUser($data['uid'])) {
+            $this->updateOnDraugiemLogin($data);
+            $row = $this->getDraugiemUser($data['uid']);
             return $row;
         }
         else {
@@ -89,6 +91,12 @@ class Model_Users extends Zend_Db_Table_Abstract
         $where = $this->getAdapter()->quoteInto('userId=?', $id);
         return $this->update($data, $where);
 
+    }
+
+    public function updateOnDraugiemLogin($data){
+        $array['name'] = $data['name'] . " " . $data['surname'];
+        $array['icon'] = $data['img'];
+        $this->update($array,$this->getAdapter()->quoteInto("userId=?",$data['uid']));
     }
 
     public function deleteUser($id)
