@@ -9,6 +9,7 @@ class Model_Pasakumi extends Zend_Db_Table_Abstract
 {
     public $_name = "pasakumi";
     public $_rowClass = "Model_Pasakumi_Row";
+    public $_primary='pasakumsId';
 
     public function createPasakums($data)
     {

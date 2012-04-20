@@ -1,0 +1,28 @@
+<?php
+if($this->type!=null){
+    ?>
+<table>
+    <thead><tr><th>Nosaukums</th><th>Apraksts</th></tr></thead>
+    <?php
+    $type=$this->type;
+        /** @var $type Model_Pasakumi_Type_Row */
+        echo "<tr>";
+        echo "<td>";
+        echo $type->getTitle();
+        echo "</td>";
+        echo "<td>";
+        echo $type->getDescription();
+        echo "</td>";
+        echo "</tr>";
+
+
+
+
+    ?>
+
+</table>
+
+
+<?php
+echo $this->form;
+}

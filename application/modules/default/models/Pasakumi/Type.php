@@ -25,5 +25,9 @@ class Model_Pasakumi_Type extends Zend_Db_Table_Abstract
     public function deleteType($id){
         $this->delete(array($this->_primary=>$id));
     }
+    public function getType($id){
+        return $this->fetchRow($this->select()->where('typeId=?',$id));
+
+    }
 
 }

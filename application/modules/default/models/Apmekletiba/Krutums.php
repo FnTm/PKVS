@@ -8,10 +8,53 @@
  */
 class Model_Apmekletiba_Krutums extends Zend_Db_Table_Abstract
 {
-    public $_name = "atipikrutums";
+    public $_name = "apmekletibatipikrutums";
 
-    public function getKrutumsValue($tipsId){
-        return $this->fetchRow($this->select()->where('apmekletibaTipsId=?',$tipsId))->toArray();
+    public function getKrutumsValue($tipsId, $pasakumaTips)
+    {
+        return $this->fetchRow($this->select()->where('apmekletibaTipsId=?', $tipsId)->where("pasakumaTipsId=?", $pasakumaTips))->toArray();
+    }
+
+    public function createKrutumsValue($tipsId, $aTipsId, $krutumsValue)
+    {
+        $array = array('apmekletibaTipsId' => $aTipsId, "pasakumaTipsId" => $tipsId, "krutumsValue" => $krutumsValue);
+        $this->insert($array);
+    }
+
+    public function insertKrutumsValues($tipsId, $array, $akey)
+    {
+        foreach ($array as $key => $val) {
+            $split = explode($akey, $key);
+            $val;
+            if (!is_null($krutums = $this->getKrutumsValue($split[1], $tipsId))) {
+                $data = array("krutumsValue" => $val);
+                $this->updateKrutumsValue($krutums['atipikrutumsId'], $data);
+            }
+            else {
+                $this->createKrutumsValue($tipsId, $split[1], $val);
+            }
+        }
+    }
+
+    public function updateKrutumsValue($id, $data)
+    {
+        $this->update($data, $this->getAdapter()->quoteInto("atipikrutumsId=?", $id));
+    }
+
+    public function getKrutumsValues($pasakumaTips, $key = null)
+    {
+        $return = $this->fetchAll($this->select()->where("pasakumaTipsId=?", $pasakumaTips));
+        if (!is_null($key)) {
+            $ret = array();
+            foreach ($return as $value) {
+                $ret[$key . $value->apmekletibaTipsId] = $value->krutumsValue;
+            }
+            $return = $ret;
+        }
+        else {
+            $return = $return->toArray();
+        }
+        return $return;
     }
 
 }
