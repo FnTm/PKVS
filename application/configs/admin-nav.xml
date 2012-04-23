@@ -6,7 +6,6 @@
             <module>default</module>
             <controller>index</controller>
             <action>index</action>
-            <order>1</order>
         </home>
 
         <galerijas>
@@ -17,32 +16,24 @@
 
 
         </galerijas>
-        <about>
-            <label>Par mums</label>
-            <module>default</module>
-            <controller>par-mums</controller>
-            <action>index</action>
-            <order>2</order>
-
-        </about>
 
         <pasakuma-tipi>
-        <label>Pasākuma tipi</label>
-        <uri>#</uri>
-        <resource>admin:pasakuma-tipi</resource>
-        <privilege>index</privilege>
-        <module>admin</module>
-        <controller>pasakuma-tipi</controller>
-        <action>index</action>
-        <pages>
-            <add>
-                <label>Pievienot tipu</label>
-                <module>admin</module>
-                <controller>pasakuma-tipi</controller>
-                <action>pievienot</action>
-            </add>
-        </pages>
-    </pasakuma-tipi>
+            <label>Pasākuma tipi</label>
+            <uri>#</uri>
+            <resource>admin:pasakuma-tipi</resource>
+            <privilege>index</privilege>
+            <module>admin</module>
+            <controller>pasakuma-tipi</controller>
+            <action>index</action>
+            <pages>
+                <add>
+                    <label>Pievienot tipu</label>
+                    <module>admin</module>
+                    <controller>pasakuma-tipi</controller>
+                    <action>pievienot</action>
+                </add>
+            </pages>
+        </pasakuma-tipi>
         <apmekletiba-tips>
             <label>Apmeklētības tipi</label>
             <uri>#</uri>
@@ -60,21 +51,30 @@
                 </add>
             </pages>
         </apmekletiba-tips>
-
-        <dejotaji>
-            <label>Lietotāji</label>
+        <jaunumu-tipi>
+            <label>Jaunumu kategorijas</label>
+            <uri>#</uri>
+            <resource>admin:jaunumu-kategorijas</resource>
+            <privilege>index</privilege>
             <module>admin</module>
-            <controller>user</controller>
+            <controller>jaunumu-kategorijas</controller>
             <action>index</action>
+            <pages>
+                <add>
+                    <label>Pievienot kategoriju</label>
+                    <module>admin</module>
+                    <controller>jaunumu-kategorijas</controller>
+                    <action>pievienot</action>
+                </add>
+            </pages>
+        </jaunumu-tipi>
 
-
-        </dejotaji>
         <pasakumi>
             <label>Pasakumi</label>
             <module>admin</module>
             <controller>pasakumi</controller>
             <action>index</action>
-             <pages>
+            <pages>
                 <add>
                     <label>Pievienot pasākumu</label>
                     <module>admin</module>
@@ -99,13 +99,15 @@
             </pages>
 
         </krutums>
-        <contact>
-            <label>Kontakti</label>
-            <module>default</module>
-            <controller>noma</controller>
+
+        <dejotaji>
+            <label>Lietotāji</label>
+            <module>admin</module>
+            <controller>user</controller>
             <action>index</action>
 
-        </contact>
+
+        </dejotaji>
 
     </nav>
 </configdata>

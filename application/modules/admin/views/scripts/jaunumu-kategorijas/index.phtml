@@ -1,0 +1,19 @@
+<a href='<? echo $this->url(array('action'=>'pievienot'));?>'>Pievienot</a>
+<table>
+    <thead>
+    <tr>
+        <th>Nosaukums</th>
+        <th>Izveidota</th>
+        <th>Darbības</th>
+    </tr>
+    </thead>
+    <?php foreach($this->categories as $cat){
+    echo "<tr><td>".$cat['kategorijaTitle']."</td>";
+    echo "<td>".$cat['kategorijaCreated']."</td>";
+    echo "<td><a href='".$this->url(array('action'=>'rediget','id'=>$cat['kategorijaId']))."'>Rediģēt</a>
+     / <a href='".$this->url(array('action'=>'dzest','id'=>$cat['kategorijaId']))."'>Dzēst</a></td>";
+
+    echo "</tr>";
+}
+?>
+    </table>

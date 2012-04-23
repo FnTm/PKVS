@@ -15,36 +15,8 @@ class Admin_JaunumiController extends JP_Controller_Action {
     }
 
     public function pievienotAction() {
-        $id = $this->_getParam('id', null);
-        if ($id == NULL) {
-            $this->log('Nav norādīts turnīra identifikators', 'error');
-            $form = NULL;
-        } else {
-            $turniriModel = new Model_Pasakumi();
-            $turnirs = $turniriModel->getTurnirs($id);
-            if ($turnirs == NULL) {
-                $this->log('Turnīrs neeksistē', 'error');
-                $form = NULL;
-            } else if ($turnirs['tournamentOwner'] === Zend_Auth::getInstance()->getIdentity()->userId) {
+       $form=new Form_Jaunumi_Pievienot();
 
-
-                $this->view->test = "Jaunumi";
-                $form = new Form_Jaunumi_Pievienot();
-                $this->view->form = $form;
-                $form->setAction('/' . Zend_Registry::get('lang') . '/jaunumi/pievienot/id/' . $id);
-                if ($this->getRequest()->isPost()) {
-                    $data = $this->_getAllParams();
-                     $data['tournamentId'] = $id;
-                    if ($form->isValid($data)) {
-                        $JaunumiModel = new Model_Jaunumi();
-                        $JaunumiModel->createJaunumi($form->getValidValues($data));
-                        $this->log('Jaunums pievienots.', 'success');
-                    } else {
-                        $form->populate($data);
-                    }
-                }
-            }
-        }
     }
 
 public function redigetAction()
