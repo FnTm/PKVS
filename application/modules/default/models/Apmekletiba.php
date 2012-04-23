@@ -19,7 +19,7 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
     public function insertApmeklejums($eventId, $userId, $apmId)
     {
         $data = array('apmekletibaUserId' => $userId, 'apmekletibaEventId' => $eventId, 'apmekletibaTipsId' => $apmId);
-        $this->insert($data);
+      return  $this->insert($data);
     }
 
     public function getApmeklejumsByEventId($id, $userIdAsKey = false)
@@ -46,36 +46,45 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
 
         $krutumsModel = new Model_Krutums();
         $apmKrutModel = new Model_Apmekletiba_Krutums();
-        $pasModel=new Model_Pasakumi();
+        $apmToKrutumsModel = new Model_Apmekletiba_ToKrutums();
+        $pasModel = new Model_Pasakumi();
 
-        $fetch=$this->getAdapter()->select()->from($this->_name)->where("apmekletibaUserId=?", $userId)
+        /*$fetch=$this->getAdapter()->select()->from($this->_name)->where("apmekletibaUserId=?", $userId)
             ->where('apmekletibaEventId=?', $eventId)->join($pasModel->_name,$pasModel->_name.'.'.$pasModel->_primary.'='.$this->_name.'.apmekletibaEventId');
-        $fetch = $this->getAdapter()->fetchRow($fetch);
+     */
+        /*Savienojam apmeklējuma un krutuma tabulas, pievienojam meklēšanu pēc
+        lietotājaId un pasākumaId */
+        $fetch = $this->getAdapter()->select()->from($this->_name)
+            ->join($apmToKrutumsModel->_name, $apmToKrutumsModel->_name . '.apmekletibaId=' . $this->_name . '.apmekletibaId')
+            ->join($krutumsModel->_name, $krutumsModel->_name . '.krutumsId=' . $apmToKrutumsModel->_name . '.krutumsId')
+            ->join($pasModel->_name,$pasModel->_name.'.'.$pasModel->_primary.'='.$this->_name.'.apmekletibaEventId')
+            ->where("apmekletibaUserId=?", $userId)
+            ->where('apmekletibaEventId=?', $eventId);
+        //var_dump($fetch->assemble());
+        $fetch = $this->getAdapter()->fetchRow($fetch); //Paņemam vienu rindu no vaicājuma rezultātiem
+          var_dump($fetch);
+
+        //Pārbaudām vai iegūtā vērtībā ir Rinda vai null;
         $fetch = (count($fetch == 1)) ? $fetch : null;
-        if (!is_null($fetch) && $fetch!==false) {
-            if ($fetch['apmekletibaTipsId'] != $apmId) {
-                $krutums = $apmKrutModel->getKrutumsValue($fetch['apmekletibaTipsId'],$fetch['pasakumsCategory']);
-                $krutumsValue = $krutums['krutumsValue'];
-                if ($krutumsValue >= 0) {
-                    $krutums = -$krutumsValue;
-                }
-                else {
-                    $krutums = +abs($krutumsValue);
-                }
+        if (!is_null($fetch) && $fetch !== false) {
 
-                $krutumsModel->addKrutums($userId, $krutumsModel::ATTENDANCE_EVENT, "Mainīts apmeklējums pasākumam " . $eventId, $krutums);
-                $krutums = $apmKrutModel->getKrutumsValue($apmId,$fetch['pasakumsCategory']);
-                $krutumsModel->addKrutums($userId, $krutumsModel::ATTENDANCE_EVENT, "Mainīts apmeklējums pasākumam " . $eventId, $krutums['krutumsValue']);
+            $krutums = $apmKrutModel->getKrutumsValue($apmId, $fetch['pasakumsCategory']);
+            $krutumsModel->updateKrutums($fetch['krutumsId'], $krutums['krutumsValue']);
 
-                $data = array('apmekletibaTipsId' => $apmId);
-                $this->update($data, "apmekletibaEventId='$eventId' and apmekletibaUserId='$userId'");
-            }
+            $data = array('apmekletibaTipsId' => $apmId);
+            $this->update($data, $this->getAdapter()->quoteInto("apmekletibaId=?", $fetch['apmekletibaId']));
+            $apmToKrutumsModel->updateBond($fetch['apmekletibaId'],$fetch['krutumsId']);
         }
         else {
-            $krutums = $apmKrutModel->getKrutumsValue($apmId,$fetch['pasakumsCategory']);
-            $krutumsModel->addKrutums($userId, $krutumsModel::ATTENDANCE_EVENT, "Par pasākumu " . $eventId, $krutums['krutumsValue']);
+            $fetch=$pasModel->getPasakums($eventId);
+            if(!is_array($fetch)){
+                $fetch=$fetch->toArray();
+            }
+            $krutums = $apmKrutModel->getKrutumsValue($apmId, $fetch['pasakumsCategory']);
+           $krutumsId= $krutumsModel->addKrutums($userId, $krutumsModel::ATTENDANCE_EVENT, "Par pasākumu " . $eventId, $krutums['krutumsValue']);
 
-            $this->insertApmeklejums($eventId, $userId, $apmId);
+           $apId= $this->insertApmeklejums($eventId, $userId, $apmId);
+            $apmToKrutumsModel->addBond($apId,$krutumsId);
         }
     }
 }

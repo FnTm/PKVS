@@ -30,7 +30,10 @@ class Model_Krutums extends Zend_Db_Table_Abstract
     {
         $data = array('krutumsUserId' => $userId, 'krutumsEvent' => $eventId, 'krutumsNote' => $eventNote,
                       "krutumsValue" => $value,"krutumsDate"=>date("Y-m-d H:i:s"));
-        $this->insert($data);
+       return $this->insert($data);
+    }
+    public function updateKrutums($krutumsId,$krutumsValue){
+      return $this->update(array('krutumsValue'=>$krutumsValue),$this->getAdapter()->quoteInto("krutumsId=?",$krutumsId));
     }
 
 

@@ -73,9 +73,9 @@ class Model_Users extends Zend_Db_Table_Abstract
     public function getUser($id)
     {
         $id = (int)$id;
-        $row = $this->fetchRow('userId = ' . $id)->toArray();
-        if (!$row) {
-            throw new Exception("Could not find row $id");
+        $row = $this->fetchRow('userId = ' . $id);
+        if(!is_null($row)){
+            $row=$row->toArray();
         }
         return $row;
     }

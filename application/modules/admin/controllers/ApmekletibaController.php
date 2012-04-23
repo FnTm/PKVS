@@ -35,13 +35,13 @@ class Admin_ApmekletibaController extends JP_Controller_Action
         if ($this->getRequest()->isPost()) {
             $data = $this->_getAllParams();
 
-            foreach ($data as $key => $user) {
+            foreach ($data as $key => $apmekletiba) {
                 if (strpos($key, "user_") !== false) {
 
                     $split = explode("user_", $key);
                     $userId = $split[1];
-                    var_dump($userId);
-                    $apmModel->updateApmeklejums($id, $userId, $user);
+                    //var_dump($id, $userId, $apmekletiba);
+                    $apmModel->updateApmeklejums($id, $userId, $apmekletiba);
 
 
                 }
