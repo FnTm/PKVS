@@ -87,7 +87,11 @@ echo $this->navigation ()->menu ()->renderMenu ($this->layout()->adminMenu);
 </td>
 
 <td width="35%" align="center">
-<div><?php
+<div>
+    <?php
+    echo $this->partial('priorityMessages.phtml', array('priorityMessages' => $this->priorityMessenger()));
+    ?>
+    <?php
 echo $this->layout ()->content;
 ?>
 </td>

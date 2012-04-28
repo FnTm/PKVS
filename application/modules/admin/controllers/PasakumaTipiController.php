@@ -61,6 +61,9 @@ class Admin_PasakumaTipiController extends JP_Controller_Action
         $this->_redirect("/admin/pasakuma-tipi/");
     }
 
+    /**
+     * TODO Pievienot visu punktu tipu inicializāciju
+     */
     public function punktiAction()
     {
         $id = $this->_getParam("id", null);
@@ -77,9 +80,12 @@ class Admin_PasakumaTipiController extends JP_Controller_Action
             if($this->getRequest()->isPost()){
                 $data=$this->_getAllParams();
                 if($form->isValid($data)){
+                    $this->log("Datu saglabāšana bīja veiksmīga!",self::SUCCESS);
                     $apmekletibaKrutumsModel->insertKrutumsValues($id,$form->getValidValues($data),Admin_Form_PasakumaTipi_Punkti::KEY_NAME);
+                    $this->_redirect("/admin/pasakuma-tipi/");
                 }
                 else{
+                    $this->log("Lūdzu aizpildiet pareizi!",self::ERROR);
                     $form->populate($data);
                 }
             }

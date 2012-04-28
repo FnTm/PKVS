@@ -61,11 +61,12 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
             ->where("apmekletibaUserId=?", $userId)
             ->where('apmekletibaEventId=?', $eventId);
         //var_dump($fetch->assemble());
+
         $fetch = $this->getAdapter()->fetchRow($fetch); //Paņemam vienu rindu no vaicājuma rezultātiem
-          var_dump($fetch);
 
         //Pārbaudām vai iegūtā vērtībā ir Rinda vai null;
         $fetch = (count($fetch == 1)) ? $fetch : null;
+
         if (!is_null($fetch) && $fetch !== false) {
 
             $krutums = $apmKrutModel->getKrutumsValue($apmId, $fetch['pasakumsCategory']);
@@ -77,10 +78,14 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
         }
         else {
             $fetch=$pasModel->getPasakums($eventId);
+
             if(!is_array($fetch)){
                 $fetch=$fetch->toArray();
             }
+
             $krutums = $apmKrutModel->getKrutumsValue($apmId, $fetch['pasakumsCategory']);
+           /* var_dump($krutums);
+            exit;*/
            $krutumsId= $krutumsModel->addKrutums($userId, $krutumsModel::ATTENDANCE_EVENT, "Par pasākumu " . $eventId, $krutums['krutumsValue']);
 
            $apId= $this->insertApmeklejums($eventId, $userId, $apmId);

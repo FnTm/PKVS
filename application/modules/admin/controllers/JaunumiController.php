@@ -15,7 +15,7 @@ class Admin_JaunumiController extends JP_Controller_Action {
     }
 
     public function pievienotAction() {
-       $form=new Form_Jaunumi_Pievienot();
+       $form=new Admin_Form_Jaunumi_Pievienot();
 
     }
 

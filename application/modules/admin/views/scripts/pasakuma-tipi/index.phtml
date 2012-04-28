@@ -24,6 +24,8 @@ echo "<a href='".$this->url(array('action'=>"pievienot"))."'>Izveidot jaunu tipu
         echo "<td>";
     echo "<a href='".$this->url(array('action'=>"rediget",'id'=>$type->getId()))."'>Rediģēt</a>";
      echo "&nbsp;/&nbsp;";
+     echo "<a href='".$this->url(array('action'=>"punkti",'id'=>$type->getId()))."'>Punkti</a>";
+     echo "&nbsp;/&nbsp;";
      echo "<a href='".$this->url(array('action'=>"dzest",'id'=>$type->getId()))."'>Dzēst</a>";
     echo "</td>";
     echo "</tr>";

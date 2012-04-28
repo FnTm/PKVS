@@ -4,6 +4,8 @@ class JP_Controller_Action extends Zend_Controller_Action
     public $_flashMessenger;
     public $elementModel;
     public $userData;
+    const SUCCESS="success";
+    const ERROR="error";
     public function logError($msg, $priority)
     {
         $this->view->priorityMessenger($msg, $priority);

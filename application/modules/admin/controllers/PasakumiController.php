@@ -15,6 +15,8 @@ class Admin_PasakumiController  extends JP_Controller_Action{
     public function pievienotAction(){
         $pasakumaTypes=new Model_Pasakumi_Type();
         $this->view->form=$form=new Admin_Form_Pasakumi_Pievienot($pasakumaTypes->getAll());
+        //var_dump($form);
+        //exit;
         $form->setAction("/admin/pasakumi/pievienot");
         if($this->getRequest()->isPost()){
             $data=$this->_getAllParams();

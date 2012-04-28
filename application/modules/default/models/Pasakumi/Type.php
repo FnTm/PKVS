@@ -23,7 +23,7 @@ class Model_Pasakumi_Type extends Zend_Db_Table_Abstract
         return $this->insert($data);
     }
     public function deleteType($id){
-        $this->delete(array($this->_primary=>$id));
+        $this->delete($this->getAdapter()->quoteInto($this->_primary."=?",$id));
     }
     public function getType($id){
         return $this->fetchRow($this->select()->where('typeId=?',$id));

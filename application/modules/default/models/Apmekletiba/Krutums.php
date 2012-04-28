@@ -12,7 +12,11 @@ class Model_Apmekletiba_Krutums extends Zend_Db_Table_Abstract
 
     public function getKrutumsValue($tipsId, $pasakumaTips)
     {
-        return $this->fetchRow($this->select()->where('apmekletibaTipsId=?', $tipsId)->where("pasakumaTipsId=?", $pasakumaTips))->toArray();
+        $row=$this->fetchRow($this->select()->where('apmekletibaTipsId=?', $tipsId)->where("pasakumaTipsId=?", $pasakumaTips));
+        if(!is_null($row)){
+            $row=$row->toArray();
+        }
+        return $row;
     }
 
     public function createKrutumsValue($tipsId, $aTipsId, $krutumsValue)

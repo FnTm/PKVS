@@ -6,7 +6,7 @@ if (sizeof($this->priorityMessages)) {
     foreach ($this->priorityMessages as $label=>$messages) {
         if (count($messages)) {
             echo '<li class="'.$label.'_message">';
-            echo '<ul class="'.$label.'_message">';
+            echo '<ul class="'.$label.'_message priority_message_container">';
             foreach ($messages as $message) {
                 echo '<li>'.$message.'</li>';
             }

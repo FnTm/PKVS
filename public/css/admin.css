@@ -1,0 +1,13 @@
+#priority_messages{
+    margin-bottom: 10px;
+}
+.priority_message_container li{
+
+    padding: 10px
+}
+.success_message li{
+    background-color: #a3ff94;
+}
+.error_message li{
+    background-color: #ff9677;
+}
