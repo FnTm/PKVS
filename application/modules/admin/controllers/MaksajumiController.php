@@ -36,6 +36,32 @@ class Admin_MaksajumiController extends JP_Controller_Action
         }
     }
 
+    public function redigetMaksajumuAction()
+    {
+        $userModel = new Model_Users();
+        $maksajumsModel = new Model_Maksajumi();
+        $id = $this->_getParam("id", null);
+        $this->view->form = $form = new Admin_Form_Maksajumi_Pievienot($userModel->getUsers(true, array('name asc')));
+        $form->removeElement("maksajumsUserId");
+        if (!is_null($id)) {
+            $form->setAction("/admin/maksajumi/rediget-maksajumu/id/".$id);
+            if ($this->getRequest()->isPost()) {
+                $data = $this->_getAllParams();
+                if ($form->isValid($data)) {
+                    $maksajumsModel->editMaksajums($form->getValidValues($data),$id);
+                    $this->log("Maksājums veiksmīgi rediģēts", self::SUCCESS);
+                    $this->_redirect("/admin/maksajumi");
+                }
+                else {
+                    $form->populate($data);
+                }
+            }
+            else {
+            $form->populate($maksajumsModel->getMaksajums($id));
+            }
+        }
+    }
+
     public function pievienotMaksajumuVairakiemAction()
     {
         $userModel = new Model_Users();

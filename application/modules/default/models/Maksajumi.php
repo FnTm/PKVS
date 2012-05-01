@@ -19,6 +19,26 @@ class Model_Maksajumi extends Zend_Db_Table_Abstract
 
         $this->insert($data);
     }
+    public function editMaksajums($data,$id)
+    {
+        $curdate = date("Y-m-d H:i:s");
+        //$data['maksajumsCreated'] = $curdate;
+        if ($data['maksajumsCompleted']) {
+            $data['maksajumsFinished'] = $curdate;
+        }
+        $this->update($data,$this->getAdapter()->quoteInto("maksajumsId=?",$id));
+    }
+    public function getMaksajums($id){
+       $return=$this->fetchRow($this->select()->where("maksajumsId=?",$id));
+        if(!is_null($return) && $return!==false){
+            $return=$return->toArray();
+        }
+        return $return;
+    }
+    public function getMaksajumsByUser($id){
+        $sql=$this->getFullQuery();
+        return $this->getAdapter()->fetchAll($sql->where("maksajumsUserId=?",$id));
+    }
     public function createMultiMaksajums($data){
         foreach ($data as $key => $apmekletiba) {
             if (strpos($key, "user_") !== false && $apmekletiba==1) {
@@ -43,9 +63,16 @@ class Model_Maksajumi extends Zend_Db_Table_Abstract
 
     private function bilanceQuery()
     {
-        $sql = $this->getAdapter()->select();
-        $sql->from(array('m' => $this->_name), new Zend_Db_Expr("*,sum(`maksajumsValue` * ((-1)+(2 *`maksajumsCompleted`))) as balance"));
+        $sql = $this->getFullQuery(false);
+        $sql->from(array('m' => $this->_name), new Zend_Db_Expr("*,sum(`maksajumsValue` * ((-1)+(1 *`maksajumsCompleted`))) as balance"));
         $sql->group("maksajumsUserId");
+        return $sql;
+    }
+    private function getFullQuery($withFrom=true){
+        $sql = $this->getAdapter()->select();
+        if($withFrom){
+        $sql->from(array('m' => $this->_name));
+        }
         $userModel=new Model_Users();
         $sql->join(array("u"=>$userModel->_name),'u.userId=m.maksajumsUserId');
         return $sql;

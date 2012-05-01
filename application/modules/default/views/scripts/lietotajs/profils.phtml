@@ -1,0 +1,59 @@
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <table>
+                <thead>
+                <tr>
+                    <th>Maksājums</th>
+                    <th>Summa</th>
+                    <th>Pievienots</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->maksajumi as $maksajums) {
+                    $style = "";
+                    if ($maksajums['maksajumsCompleted']) {
+                        $style = "paymentCompleted";
+                    }
+                    else {
+                        $style = "paymentNotCompleted";
+                    }
+                    echo "<tr class='$style'>";
+                    echo "<td>" . $maksajums['maksajumsTitle'] . "</td>";
+                    echo "<td>" . $maksajums['maksajumsValue'] . "</td>";
+                    echo "<td>" . $maksajums['maksajumsCreated'] . "</td>";
+                    echo "</tr>";
+
+                }?>
+
+                </tbody>
+
+            </table>
+
+        </td>
+        <td>
+            <table>
+                <thead>
+                <th>Pasākums</th>
+                <th>Pasākums laiks</th>
+                <th>Statuss</th>
+                </thead>
+                <tbody>
+                <?php
+
+                foreach ($this->apmeklejums as $apm) {
+                    echo "<tr style='background-color: " . $apm['apmekletibaTipsColor'] . "'>";
+                    // var_dump($apm);
+                    echo "<td>" . $apm['pasakumsTitle'] . "</td>";
+                    echo "<td>" . $apm['pasakumsTime'] . "</td>";
+                    echo "<td>" . $apm['apmekletibaTipsTitle'] . "</td>";
+                    echo "<tr>";
+                }?>
+                </tbody>
+            </table>
+
+        </td>
+    </tr>
+    </tbody>
+</table>

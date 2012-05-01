@@ -40,7 +40,19 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
         }
         return $return;
     }
+    public function getApmeklejumsByUser($id){
+        $db = $this->getAdapter();
+        $userModel = new Model_Users();
+        $apmTipsModel = new Model_Apmekletiba_Tips();
+        $pasModel = new Model_Pasakumi();
+        $select = $db->select()->from($this->_name)->where($userModel->_name . ".userId=?", $id)
+            ->join($userModel->_name, $this->_name . ".apmekletibaUserId=" . $userModel->_name . ".userId")
+            ->join($pasModel->_name,$pasModel->_name.'.'.$pasModel->_primary.'='.$this->_name.'.apmekletibaEventId')
+            ->join($apmTipsModel->_name, $this->_name . ".apmekletibaTipsId=" . $apmTipsModel->_name . ".apmekletibaTipsId");
+        $return = $db->fetchAll($select);
 
+        return $return;
+    }
     public function updateApmeklejums($eventId, $userId, $apmId)
     {
 

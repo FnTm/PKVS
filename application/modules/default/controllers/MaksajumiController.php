@@ -9,6 +9,7 @@ class MaksajumiController extends JP_Controller_Action
     }
 
     //TODO Parādīt katra kopējo bilanci
+    //TODO iekrāsot negatīvo, pozitīvo, neitrālo bilanci
     public function indexAction()
     {
         $maksajumsModel=new Model_Maksajumi();
