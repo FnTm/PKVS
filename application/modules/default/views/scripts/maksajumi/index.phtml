@@ -1,0 +1,20 @@
+<table>
+    <thead>
+    <tr>
+        <th colspan="2">Cilvēks</th>
+        <th>Bilance</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($this->maksajumi as $maksajums) {
+        echo "<tr>";
+        echo "<td><img src='".$maksajums['icon']."' alt='".$maksajums['name']."'></td>";
+        echo "<td>" . $maksajums['name'] . "</td>";
+        echo "<td>" . $maksajums['balance'] . "</td>";
+        echo "</tr>";
+
+    }
+
+    ?>
+    </tbody>
+</table>

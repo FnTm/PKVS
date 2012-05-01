@@ -16,6 +16,14 @@
             <order>2</order>
 
         </galerijas>
+        <maksajumi>
+            <label>Maksājumi</label>
+            <module>default</module>
+            <controller>maksajumi</controller>
+            <action>index</action>
+            <order>2</order>
+
+        </maksajumi>
 <!--
         <galerijas>
             <label>Galerijas</label>

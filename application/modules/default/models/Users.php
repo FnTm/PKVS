@@ -117,13 +117,16 @@ class Model_Users extends Zend_Db_Table_Abstract
  * @param bool $enabled If false, gets all, not only enabled users
  * @return array
  */
-    public function getUsers($enabled=true)
+    public function getUsers($enabled=true,$order=array())
     {
         $select=null;
         if($enabled){
             $select=$this->select()->where('isApproved=?',(int)$enabled);
         }
-        return $this->fetchAll()->toArray();
+        foreach($order as $ord){
+            $select->order($ord);
+        }
+        return $this->fetchAll($select)->toArray();
     }
 
     public function checkUsernameExists($username)
