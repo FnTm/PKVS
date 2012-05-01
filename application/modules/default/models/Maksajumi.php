@@ -19,36 +19,43 @@ class Model_Maksajumi extends Zend_Db_Table_Abstract
 
         $this->insert($data);
     }
-    public function editMaksajums($data,$id)
+
+    public function editMaksajums($data, $id)
     {
         $curdate = date("Y-m-d H:i:s");
         //$data['maksajumsCreated'] = $curdate;
         if ($data['maksajumsCompleted']) {
             $data['maksajumsFinished'] = $curdate;
         }
-        $this->update($data,$this->getAdapter()->quoteInto("maksajumsId=?",$id));
+        $this->update($data, $this->getAdapter()->quoteInto("maksajumsId=?", $id));
     }
-    public function getMaksajums($id){
-       $return=$this->fetchRow($this->select()->where("maksajumsId=?",$id));
-        if(!is_null($return) && $return!==false){
-            $return=$return->toArray();
+
+    public function getMaksajums($id)
+    {
+        $return = $this->fetchRow($this->select()->where("maksajumsId=?", $id));
+        if (!is_null($return) && $return !== false) {
+            $return = $return->toArray();
         }
         return $return;
     }
-    public function getMaksajumsByUser($id){
-        $sql=$this->getFullQuery();
-        return $this->getAdapter()->fetchAll($sql->where("maksajumsUserId=?",$id));
+
+    public function getMaksajumsByUser($id)
+    {
+        $sql = $this->getFullQuery();
+        return $this->getAdapter()->fetchAll($sql->where("maksajumsUserId=?", $id));
     }
-    public function createMultiMaksajums($data){
+
+    public function createMultiMaksajums($data)
+    {
         foreach ($data as $key => $apmekletiba) {
-            if (strpos($key, "user_") !== false && $apmekletiba==1) {
-                $realData=array();
+            if (strpos($key, "user_") !== false && $apmekletiba == 1) {
+                $realData = array();
                 $split = explode("user_", $key);
                 $userId = $split[1];
                 //var_dump($id, $userId, $apmekletiba);
-                $realData['maksajumsUserId']=$userId;
-                $realData['maksajumsValue']=$data['maksajumsValue'];
-                $realData['maksajumsTitle']=$data['maksajumsTitle'];
+                $realData['maksajumsUserId'] = $userId;
+                $realData['maksajumsValue'] = $data['maksajumsValue'];
+                $realData['maksajumsTitle'] = $data['maksajumsTitle'];
                 $this->createMaksajums($realData);
 
             }
@@ -68,19 +75,37 @@ class Model_Maksajumi extends Zend_Db_Table_Abstract
         $sql->group("maksajumsUserId");
         return $sql;
     }
-    private function getFullQuery($withFrom=true){
+
+    private function getFullQuery($withFrom = true, $order = "name asc")
+    {
         $sql = $this->getAdapter()->select();
-        if($withFrom){
-        $sql->from(array('m' => $this->_name));
+        if ($withFrom) {
+            $sql->from(array('m' => $this->_name));
         }
-        $userModel=new Model_Users();
-        $sql->join(array("u"=>$userModel->_name),'u.userId=m.maksajumsUserId');
+        $userModel = new Model_Users();
+        $sql->join(array("u" => $userModel->_name), 'u.userId=m.maksajumsUserId');
+        if (!is_null($order)) {
+            $sql->order($order);
+        }
         return $sql;
     }
 
     public function getBilanceForUser($id)
     {
         return $this->fetchAll($this->select()->where("maksajumsUserId=?", $id));
+    }
+
+    public function getMaksajumi()
+    {
+        $sql = $this->getFullQuery(true,null);
+        return $this->getAdapter()->fetchAll($sql);
+    }
+
+    public function changeMaksajums($id, $status)
+    {
+        $data['maksajumsCompleted'] = $status;
+        $data['maksajumsFinished'] = date("Y-m-d H:i:s");
+        $this->update($data, $this->getAdapter()->quoteInto("maksajumsId=?", $id));
     }
 
 

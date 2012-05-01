@@ -7,7 +7,14 @@
     </thead>
     <tbody>
     <?php foreach ($this->maksajumi as $maksajums) {
-        echo "<tr>";
+        $style = "";
+        if ($maksajums['balance']>=0) {
+            $style = "paymentCompleted";
+        }
+        else {
+            $style = "paymentNotCompleted";
+        }
+        echo "<tr class='$style'>";
         echo "<td><img src='".$maksajums['icon']."' alt='".$maksajums['name']."'></td>";
         echo "<td>" . $maksajums['name'] . "</td>";
         echo "<td>" . $maksajums['balance'] . "</td>";

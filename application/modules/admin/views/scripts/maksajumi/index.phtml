@@ -1,19 +1,72 @@
 <table>
-    <thead>
     <tr>
-        <th>Cilvēks</th>
-        <th>Bilance</th>
+        <td>
+            <table>
+                <thead>
+                <tr>
+                    <th>Cilvēks</th>
+                    <th>Bilance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->bilance as $maksajums) {
+                    $style = "";
+                    if ($maksajums['balance']>=0) {
+                        $style = "paymentCompleted";
+                    }
+                    else {
+                        $style = "paymentNotCompleted";
+                    }
+                    echo "<tr class='$style'>";
+                    echo "<td>" . $maksajums['name'] . "</td>";
+                    echo "<td>" . $maksajums['balance'] . "</td>";
+                    echo "</tr>";
+
+                }
+
+                ?>
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <table>
+                <thead>
+                <tr>
+                    <th>Cilvēks</th>
+                    <th>Maksājums</th>
+                    <th>Bilance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->maksajumi as $maksajums) {
+                    $style = "";
+                    if ($maksajums['maksajumsCompleted']) {
+                        $style = "paymentCompleted";
+                    }
+                    else {
+                        $style = "paymentNotCompleted";
+                    }
+                    echo "<tr class='$style'>";
+                    echo "<td>" . $maksajums['name'] . "</td>";
+                    echo "<td>" . $maksajums['maksajumsTitle'] . "</td>";
+                    echo "<td>" . $maksajums['maksajumsValue'] . "</td>";
+                    if (!$maksajums['maksajumsCompleted']) {
+                        $action="apstiprinat";
+                        $title="Aptiprināt";
+                    } else {
+                        $action="noraidit";
+                        $title="Noraidīt";
+
+                    }
+                    echo "<td><a href=".$this->url(array('action'=>$action,"id"=>$maksajums['maksajumsId'])) . ">$title</a></td>";
+                    echo "</tr>";
+
+                }
+
+                ?>
+                </tbody>
+            </table>
+
+        </td>
     </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($this->maksajumi as $maksajums) {
-        echo "<tr>";
-        echo "<td>" . $maksajums['name'] . "</td>";
-        echo "<td>" . $maksajums['balance'] . "</td>";
-        echo "</tr>";
-
-    }
-
-    ?>
-    </tbody>
 </table>
