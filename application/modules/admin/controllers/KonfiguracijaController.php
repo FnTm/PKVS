@@ -1,6 +1,6 @@
 ﻿<?php
 
-class Admin_IndexController extends JP_Controller_Action
+class Admin_KonfiguracijaController extends JP_Controller_Action
 {
 
     public function init()
