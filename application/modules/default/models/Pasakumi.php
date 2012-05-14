@@ -23,6 +23,10 @@ class Model_Pasakumi extends Zend_Db_Table_Abstract
     {
         return $this->getAdapter()->fetchAll($this->getAdapter()->select()->from($this->_name));
     }
+    public function getClosestPasakumi(){
+
+            return $this->getAdapter()->fetchAll($this->getAdapter()->select()->from($this->_name,new Zend_Db_Expr('* , ABS( UNIX_TIMESTAMP(  `pasakumsTime` ) - UNIX_TIMESTAMP( NOW( ) ) ) AS diff'))->order('diff asc'));
+    }
 //TODO Sasaiste ar pasākuma izveidotāju, kategoriju
     public function getPasakums($id)
     {

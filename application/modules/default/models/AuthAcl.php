@@ -31,6 +31,7 @@ class Model_AuthAcl extends Zend_Acl
          ->add(new Zend_Acl_Resource('default:pasakumi'), 'default')
             ->add(new Zend_Acl_Resource('default:lietotajs'), 'default')
             ->add(new Zend_Acl_Resource('default:krutums'), 'default')
+            ->add(new Zend_Acl_Resource('default:maksajumi'), 'default')
             ->add(new Zend_Acl_Resource('default:dalibnieki'), 'default')
             ->add(new Zend_Acl_Resource('default:index'), 'default')
             ->add(new Zend_Acl_Resource('default:error'), 'default')
@@ -45,6 +46,7 @@ class Model_AuthAcl extends Zend_Acl
         $this->allow('guest', 'default:authentication', array('login', 'logout'));
 //        $this->allow('guest', 'default:error', 'error');
         $this->allow('user','default:krutums');
+        $this->allow('user','default:maksajumi');
         $this->allow('user','default:lietotajs',array('profils'));
         $this->allow('user','default:pasakumi',array('skatit'));
         $this->allow('editor', 'admin');

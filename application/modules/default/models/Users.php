@@ -96,13 +96,7 @@ class Model_Users extends Zend_Db_Table_Abstract
     public function updateOnDraugiemLogin($data){
         $array['name'] = $data['name'] . " " . $data['surname'];
         $array['icon'] = $data['img'];
-        $this->update($array,$this->getAdapter()->quoteInto("userId=?",$data['uid']));
-    }
-
-    public function deleteUser($id)
-    {
-        $this->delete('id =' . (int)$id);
-        return "1";
+        $this->update($array,$this->getAdapter()->quoteInto("draugiemId=?",$data['uid']));
     }
 
     public function getLatest()

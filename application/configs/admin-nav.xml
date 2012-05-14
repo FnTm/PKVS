@@ -99,7 +99,35 @@
             </pages>
 
         </krutums>
+        <maksajumi>
+            <label>Maksājumi</label>
+            <module>admin</module>
+            <controller>maksajumi</controller>
+            <action>index</action>
+            <pages>
+                <add>
+                    <label>Pievienot maksajumu</label>
+                    <module>admin</module>
+                    <controller>maksajumi</controller>
+                    <action>pievienot-maksajumu</action>
+                </add>
+                <addm>
+                    <label>Pievienot maksajumu vairākiem</label>
+                    <module>admin</module>
+                    <controller>maksajumi</controller>
+                    <action>pievienot-maksajumu-vairakiem</action>
+                </addm>
+            </pages>
 
+        </maksajumi>
+        <konfiguracija>
+            <label>Konfigurācija</label>
+            <module>admin</module>
+            <controller>konfiguracija</controller>
+            <action>index</action>
+
+
+        </konfiguracija>
         <dejotaji>
             <label>Lietotāji</label>
             <module>admin</module>

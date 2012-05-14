@@ -20,7 +20,7 @@ class Admin_UserController extends JP_Controller_Action
     public function indexAction()
     {
 
-        $this->view->users = $this->_userModel->getUsers();
+        $this->view->users = $this->_userModel->getUsers(false);
     }
 
     public function enableAction()

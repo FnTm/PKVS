@@ -17,7 +17,7 @@ class IndexController extends JP_Controller_Action
         $this->view->jaunumi=$jaunumiModel->getAllJaunumi();
        */
             $pasakumiModel=new Model_Pasakumi();
-            $this->view->pasakumi=$pasakumiModel->getAllPasakumi();
+            $this->view->pasakumi=$pasakumiModel->getClosestPasakumi();
         }
         else{
             $this->_helper->layout->disableLayout();

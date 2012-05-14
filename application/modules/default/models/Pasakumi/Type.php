@@ -12,7 +12,7 @@
  */
 class Model_Pasakumi_Type extends Zend_Db_Table_Abstract
 {
-    public $_name = "pasakumiType";
+    public $_name = "pasakumitype";
     public $_rowClass = "Model_Pasakumi_Type_Row";
     public $_primary="typeId";
 
