@@ -71,7 +71,7 @@ class Admin_PasakumaTipiController extends JP_Controller_Action
 
         $form = null;
         if (!is_null($id)) {
-            $apmekletibaKrutumsModel=new Model_Apmekletiba_Krutums();
+            $apmekletibaPunktiModel=new Model_Apmekletiba_Punkti();
             $typeModel = new Model_Pasakumi_Type();
             $this->view->type = $typeModel->getType($id);
             $apmTipsModel = new Model_Apmekletiba_Tips();
@@ -81,7 +81,7 @@ class Admin_PasakumaTipiController extends JP_Controller_Action
                 $data=$this->_getAllParams();
                 if($form->isValid($data)){
                     $this->log("Datu saglabāšana bīja veiksmīga!",self::SUCCESS);
-                    $apmekletibaKrutumsModel->insertKrutumsValues($id,$form->getValidValues($data),Admin_Form_PasakumaTipi_Punkti::KEY_NAME);
+                    $apmekletibaPunktiModel->insertPunktiValues($id,$form->getValidValues($data),Admin_Form_PasakumaTipi_Punkti::KEY_NAME);
                     $this->_redirect("/admin/pasakuma-tipi/");
                 }
                 else{
@@ -90,7 +90,7 @@ class Admin_PasakumaTipiController extends JP_Controller_Action
                 }
             }
             else{
-                $form->populate($apmekletibaKrutumsModel->getKrutumsValues($id,Admin_Form_PasakumaTipi_Punkti::KEY_NAME));
+                $form->populate($apmekletibaPunktiModel->getPunktiValues($id,Admin_Form_PasakumaTipi_Punkti::KEY_NAME));
             }
         }
         $this->view->form = $form;

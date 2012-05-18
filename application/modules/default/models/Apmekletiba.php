@@ -9,11 +9,11 @@
 class Model_Apmekletiba extends Zend_Db_Table_Abstract
 {
     public $_name = "apmekletiba";
-    public $krutumsModel;
+    public $punktiModel;
 
     public function init()
     {
-        $this->krutumsModel = new Model_Krutums();
+        $this->punktiModel = new Model_Punkti();
     }
 
     public function insertApmeklejums($eventId, $userId, $apmId)
@@ -56,9 +56,9 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
     public function updateApmeklejums($eventId, $userId, $apmId)
     {
 
-        $krutumsModel = new Model_Krutums();
-        $apmKrutModel = new Model_Apmekletiba_Krutums();
-        $apmToKrutumsModel = new Model_Apmekletiba_ToKrutums();
+        $punktiModel = new Model_Punkti();
+        $apmKrutModel = new Model_Apmekletiba_Punkti();
+        $apmToPunktiModel = new Model_Apmekletiba_ToPunkti();
         $pasModel = new Model_Pasakumi();
 
         /*$fetch=$this->getAdapter()->select()->from($this->_name)->where("apmekletibaUserId=?", $userId)
@@ -67,8 +67,8 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
         /*Savienojam apmeklējuma un krutuma tabulas, pievienojam meklēšanu pēc
         lietotājaId un pasākumaId */
         $fetch = $this->getAdapter()->select()->from($this->_name)
-            ->join($apmToKrutumsModel->_name, $apmToKrutumsModel->_name . '.apmekletibaId=' . $this->_name . '.apmekletibaId')
-            ->join($krutumsModel->_name, $krutumsModel->_name . '.krutumsId=' . $apmToKrutumsModel->_name . '.krutumsId')
+            ->join($apmToPunktiModel->_name, $apmToPunktiModel->_name . '.apmekletibaId=' . $this->_name . '.apmekletibaId')
+            ->join($punktiModel->_name, $punktiModel->_name . '.punktiId=' . $apmToPunktiModel->_name . '.punktiId')
             ->join($pasModel->_name,$pasModel->_name.'.'.$pasModel->_primary.'='.$this->_name.'.apmekletibaEventId')
             ->where("apmekletibaUserId=?", $userId)
             ->where('apmekletibaEventId=?', $eventId);
@@ -81,12 +81,12 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
 
         if (!is_null($fetch) && $fetch !== false) {
 
-            $krutums = $apmKrutModel->getKrutumsValue($apmId, $fetch['pasakumsCategory']);
-            $krutumsModel->updateKrutums($fetch['krutumsId'], $krutums['krutumsValue']);
+            $punkti = $apmKrutModel->getPunktiValue($apmId, $fetch['pasakumsCategory']);
+            $punktiModel->updatePunkti($fetch['punktiId'], $punkti['punktiValue']);
 
             $data = array('apmekletibaTipsId' => $apmId);
             $this->update($data, $this->getAdapter()->quoteInto("apmekletibaId=?", $fetch['apmekletibaId']));
-            $apmToKrutumsModel->updateBond($fetch['apmekletibaId'],$fetch['krutumsId']);
+            $apmToPunktiModel->updateBond($fetch['apmekletibaId'],$fetch['punktiId']);
         }
         else {
             $fetch=$pasModel->getPasakums($eventId);
@@ -95,13 +95,13 @@ class Model_Apmekletiba extends Zend_Db_Table_Abstract
                 $fetch=$fetch->toArray();
             }
 
-            $krutums = $apmKrutModel->getKrutumsValue($apmId, $fetch['pasakumsCategory']);
-           /* var_dump($krutums);
+            $punkti = $apmKrutModel->getPunktiValue($apmId, $fetch['pasakumsCategory']);
+           /* var_dump($punkti);
             exit;*/
-           $krutumsId= $krutumsModel->addKrutums($userId, $krutumsModel::ATTENDANCE_EVENT, "Par pasākumu " . $eventId, $krutums['krutumsValue']);
+           $punktiId= $punktiModel->addPunkti($userId, $punktiModel::ATTENDANCE_EVENT, "Par pasākumu " . $eventId, $punkti['punktiValue']);
 
            $apId= $this->insertApmeklejums($eventId, $userId, $apmId);
-            $apmToKrutumsModel->addBond($apId,$krutumsId);
+            $apmToPunktiModel->addBond($apId,$punktiId);
         }
     }
 }

@@ -84,21 +84,21 @@
             </pages>
 
         </pasakumi>
-        <krutums>
-            <label>Krutums</label>
+        <punkti>
+            <label>Punkti</label>
             <module>admin</module>
-            <controller>krutums</controller>
+            <controller>punkti</controller>
             <action>index</action>
             <pages>
                 <add>
                     <label>Pievienot punktus</label>
                     <module>admin</module>
-                    <controller>krutums</controller>
+                    <controller>punkti</controller>
                     <action>pievienot</action>
                 </add>
             </pages>
 
-        </krutums>
+        </punkti>
         <maksajumi>
             <label>Maksājumi</label>
             <module>admin</module>

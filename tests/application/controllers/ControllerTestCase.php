@@ -25,5 +25,27 @@ abstract class ControllerTestCase extends Zend_Test_PHPUnit_ControllerTestCase
             $front->setParam('bootstrap', $this->application->getBootstrap());
         }
     }
+    /**
+
+    @param string $expectedCode
+    @param string $message
+     */
+    public function assertResponseCode($expectedCode, $message = '') { $this->assertEquals($expectedCode, $this->getResponse()->getHttpResponseCode(), $message); }
+    /**
+
+    @param string $expectedUrl
+    @param string $message
+     */
+    public function assertRedirectTo($expectedUrl, $message = '')
+    {
+        $headers = $this->getResponse()->getHeaders();
+        $actualUrl = '';
+
+        foreach($headers as $header) {
+            if ($header['name'] === 'Location') { $actualUrl = $header['value']; }
+        }
+
+        $this->assertEquals($expectedUrl, $actualUrl, $message);
+    }
 
 }

@@ -10,7 +10,7 @@ echo "<a href='".$this->url(array('action'=>"pievienot"))."'>Izveidot jaunu pasa
 ?>
 
 <table>
-    <thead><tr><th>Nosaukums</th><th>Apraksts</th><th>Darbības</th></tr></thead>
+    <thead><tr><th>Nosaukums</th><th>Laiks</th><th>Apraksts</th><th>Darbības</th></tr></thead>
 <?php
  foreach ($this->pasakumi as $type) {
     /** @var $type Model_Pasakumi_Row */
@@ -18,6 +18,9 @@ echo "<a href='".$this->url(array('action'=>"pievienot"))."'>Izveidot jaunu pasa
     echo "<td>";
     echo $type['pasakumsTitle'];
     echo "</td>";
+     echo "<td>";
+     echo $type['pasakumsTime'];
+     echo "</td>";
     echo "<td>";
     echo $type['pasakumsDescription'];
     echo "</td>";

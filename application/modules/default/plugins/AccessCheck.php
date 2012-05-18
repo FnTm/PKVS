@@ -20,12 +20,14 @@ class Plugin_AccessCheck extends Zend_Controller_Plugin_Abstract
             try {
                 if (!$this->_acl->isAllowed(Zend_Registry::get('role'), $module . ':' . $resource, $action)) {
                     //$this->getActionController()->
-                    var_dump($module);
+                    /*var_dump($module);
                     var_dump($resource);
                     var_dump($action);
                     var_dump($module . ':' . $resource);
+
                     $request->setControllerName('authentication')->setModuleName('default')
                             ->setActionName('login');
+                    */
                 }
             }
             catch (Exception $ex) {

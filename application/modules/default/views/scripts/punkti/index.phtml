@@ -1,0 +1,16 @@
+<table>
+    <thead>
+    <tr><th colspan="2">Vārds,Uzvārds</th><th>Punkti</th></tr>
+
+    </thead>
+<?php
+
+foreach($this->punkti as $punkti){
+    echo "<tr>";
+    echo "<td><img src='".$punkti['icon']."' alt='".$punkti['name']."'/></td><td>".$punkti['name']."</td><td>".$punkti['punktiCombined']."</td>";
+     echo "</tr>";
+}
+
+?>
+    </table>
+

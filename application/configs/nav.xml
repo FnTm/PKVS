@@ -9,9 +9,9 @@
             <order>3</order>
         </home>
          <galerijas>
-            <label>Krutums</label>
+            <label>Punkti</label>
             <module>default</module>
-            <controller>krutums</controller>
+            <controller>punkti</controller>
             <action>index</action>
             <order>2</order>
 
