@@ -13,7 +13,14 @@
             <module>default</module>
             <controller>galerija</controller>
             <action>index</action>
-
+            <pages>
+                <add>
+                    <label>Pievienot galeriju</label>
+                    <module>admin</module>
+                    <controller>galerijas</controller>
+                    <action>pievienot</action>
+                </add>
+            </pages>
 
         </galerijas>
 
@@ -99,6 +106,21 @@
             </pages>
 
         </punkti>
+        <bildes>
+            <label>Bildes</label>
+            <module>admin</module>
+            <controller>bildes</controller>
+            <action>index</action>
+            <pages>
+                <add>
+                    <label>Pievienot bildi</label>
+                    <module>admin</module>
+                    <controller>bildes</controller>
+                    <action>pievienot</action>
+                </add>
+            </pages>
+
+        </bildes>
         <maksajumi>
             <label>Maksājumi</label>
             <module>admin</module>

@@ -1,0 +1,28 @@
+<table>
+    <thead>
+    <tr>
+        <th>Nosaukums</th>
+        <th>Apraksts</th>
+        <th>Darbības</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    //Looping through the pictures
+    foreach ($this->bildes as $bilde) {
+
+        echo "<tr>";
+        echo "<td>" . $bilde['pictureTitle'] . "</td>";
+        echo "<td>" . $bilde['pictureDescription'] . "</td>";
+        echo "<td>";
+        echo  "<a href=" . $this->url(array('action' => "rediget", "id" => $bilde['pictureId'])) . ">rediģēt</a>";
+        echo  "&nbsp;/&nbsp;<a href=" . $this->url(array('action' => "dzest", "id" => $bilde['pictureId'])) . ">dzēst</a>";
+
+        echo "</td>";
+        echo "</tr>";
+
+    }
+
+    ?>
+    </tbody>
+</table>
