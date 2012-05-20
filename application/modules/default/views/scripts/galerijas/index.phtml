@@ -1,0 +1,33 @@
+<?php
+/** View script for viewing all galleries
+ * @author Janis Peisenieks
+ * @package Galerijas
+ * @subpackage Default
+ */
+?>
+<div id="galleryContainerWrapper">
+    <?php
+    $i = 0;
+    $j = 0;
+    $count = count($this->galleries);
+    foreach ($this->galleries as $gallery) {
+        //var_dump($i);
+        if ($i == 0) {
+            echo "<div class='galleryRow'>";
+
+        }
+        echo "<div class='galleryContainer'><a href='/galerijas/skatit/id/" . $gallery['galleryId'] . "'><img src='/images/uploaded/".$gallery['pictureId']."_small.".$gallery['pictureExt']."' title='" . $gallery['galleryTitle'] . "' alt='" . $gallery['galleryTitle'] . "'/> " . $gallery['galleryTitle'] . "</a></div>";
+
+        if ($i == 4 || ++$j == $count) {
+            $i = 0;
+            echo "</div>";
+        }
+        else {
+            $i++;
+        }
+
+
+    }
+    ?>
+
+</div>

@@ -60,7 +60,7 @@ class Model_Bildes extends Zend_Db_Table_Abstract
      */
     public function getAll()
     {
-        return $this->fetchAll($this->select()->order($this->_primaryKey." desc"))->toArray();
+        return $this->fetchAll($this->select()->order($this->_primaryKey . " desc"))->toArray();
     }
 
     /** Deletes a selected picture
@@ -70,5 +70,15 @@ class Model_Bildes extends Zend_Db_Table_Abstract
     public function deletePicture($id)
     {
         return $this->delete($this->getAdapter()->quoteInto($this->_primaryKey . "=?", $id));
+    }
+
+    /**
+     * Retrieves all of the images for a particular gallery
+     * @param $galleryId int GalleryId
+     * @return array
+     */
+    public function getPicturesByGallery($galleryId)
+    {
+        return $this->fetchAll($this->select()->where("galleryId=?", $galleryId)->order($this->_primaryKey . " desc"))->toArray();
     }
 }

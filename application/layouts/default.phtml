@@ -12,7 +12,8 @@ echo $this->doctype();
     echo $this->headTitle();
     echo $this->headLink()->appendStylesheet($this->baseUrl() . '/css/style.css')->appendStylesheet($this->baseUrl() . '/js/jquery/css/ui-lightness/jquery-ui-1.7.2.custom.css')->appendStylesheet($this->baseUrl() . '/css/shared.css');
     echo $this->headScript ()->prependFile ($this->baseUrl (). '/js/jquery-1.6.2.min.js', 'text/javascript', '' )->appendFile ($this->baseUrl (). '/js/jquery-ui-1.8.16.custom.min.php', 'text/javascript', '' );
-    ?>
+    echo $this->jQuery();
+   ?>
 
 <style type="text/css">
     .ui-datepicker{

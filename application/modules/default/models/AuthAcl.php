@@ -40,6 +40,8 @@ class Model_AuthAcl extends Zend_Acl
             ->addResource(new Zend_Acl_Resource('admin:menu'), 'admin')
             ->addResource(new Zend_Acl_Resource('admin:pasakuma-tipi'), 'admin')
             ->addResource(new Zend_Acl_Resource('admin:apmekletiba'), 'admin')
+            ->addResource(new Zend_Acl_Resource('admin:apmekletiba-tips'), 'admin')
+            ->addResource(new Zend_Acl_Resource('admin:jaunumu-kategorijas'), 'admin')
             ->addResource(new Zend_Acl_Resource('admin:user'), 'admin');
         $this->addResource(new Zend_Acl_Resource('default'))
             ->addResource(new Zend_Acl_Resource('default:authentication'), 'default')
@@ -48,11 +50,12 @@ class Model_AuthAcl extends Zend_Acl
             ->addResource(new Zend_Acl_Resource('default:punkti'), 'default')
             ->addResource(new Zend_Acl_Resource('default:maksajumi'), 'default')
             ->addResource(new Zend_Acl_Resource('default:dalibnieki'), 'default')
+            ->addResource(new Zend_Acl_Resource('default:galerijas'), 'default')
             ->addResource(new Zend_Acl_Resource('default:index'), 'default')
             ->addResource(new Zend_Acl_Resource('default:error'), 'default')
             ->addResource(new Zend_Acl_Resource('default:js'), 'default')
             ->addResource(new Zend_Acl_Resource('default:css'), 'default');
-       //We denay all to guest, and only allow specific parts
+       //We denay all to guest, and only allow specific partsz
         $this->deny('guest');
         $this->allow('guest', 'default:index', 'index');
 //        $this->allow('guest', 'default:pasakumi');

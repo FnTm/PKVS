@@ -1,0 +1,23 @@
+<?php
+/** View script for viewing a specific gallery
+ * @author Janis Peisenieks
+ * @package Galerijas
+ * @subpackage Default
+ */
+
+foreach ($this->pictures as $image) {
+
+    ?>
+
+<div class="imageContainer">
+    <a class="category<?php echo $image['galleryId'];?>"
+       rel="category<?php echo $image['galleryId'];?>"
+       href="/images/uploaded/<?php echo $image['pictureId'];?>.<?php echo $image['pictureExt'];?>"
+       title="<?php echo $image['pictureTitle'];?><br/><br/><?php echo $image['pictureDescription'];?>">
+        <img src="/images/uploaded/<?php echo $image['pictureId'];?>_small.<?php echo $image['pictureExt'];?>"
+             alt="<?php echo $image['pictureTitle'];?>" title="<?php echo $image['pictureTitle'];?>"/>
+    </a>
+</div>
+<?php
+
+}

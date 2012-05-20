@@ -2,7 +2,7 @@
 /**
  *
  */
-class GalerijasControllerTest extends ControllerTestCase
+class Admin_GalerijasControllerTest extends ControllerTestCase
 {
     /**
      *

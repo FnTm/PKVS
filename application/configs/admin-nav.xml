@@ -10,8 +10,8 @@
 
         <galerijas>
             <label>Galerijas</label>
-            <module>default</module>
-            <controller>galerija</controller>
+            <module>admin</module>
+            <controller>galerijas</controller>
             <action>index</action>
             <pages>
                 <add>

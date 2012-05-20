@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <parser>
+        <target>../pupDocs</target>
+    </parser>
+    <transformer>
+        <target>../pupDocs</target>
+    </transformer>
+    <files>
+        <directory>.</directory>
+        <ignore>tests/*</ignore>
+        <ignore>tmp/*</ignore>
+        <ignore>public/*</ignore>
+        <ignore>library/Sozfo/*</ignore>
+        <ignore>library/PhpThumb/*</ignore>
+        <ignore>library/SF/*</ignore>
+    </files>
+</phpdoc>

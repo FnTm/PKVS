@@ -61,7 +61,21 @@ class Model_Galerijas extends Zend_Db_Table_Abstract
      */
     public function getAll()
     {
-        return $this->fetchAll($this->select()->order($this->_primaryKey." desc"))->toArray();
+        return $this->fetchAll($this->select()->order($this->_primaryKey . " desc"))->toArray();
+    }
+
+    /**
+     * Get ALL the galleries with at least one image
+     * @return array|null
+     */
+    public function getAllWithOneImage()
+    {
+        //Build a multi-table select object
+        $select = $this->getAdapter()->select();
+        $select->from(array('g' => $this->_name))
+            ->joinLeft(array("p" => 'pictures'), 'g.galleryId=p.galleryId')
+            ->where("p.pictureId IS NOT NULL")->group("g.galleryId");
+        return $this->getAdapter()->fetchAll($select);
     }
 
     /** Deletes a selected gallery
