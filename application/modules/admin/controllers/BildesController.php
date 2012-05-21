@@ -41,8 +41,6 @@ class Admin_BildesController extends JP_Controller_Action
 
         $pictureModel = new Model_Bildes();
         $this->view->bildes = $pictureModel->getAll();
-
-
     }
 
     /**
@@ -165,7 +163,7 @@ class Admin_BildesController extends JP_Controller_Action
             //Deleting the picture
             $pictureModel->deletePicture($id);
             //Adding the success message
-            $this->log("Bilde veiksmīgi dzēst", self::SUCCESS);
+            $this->log("Bilde veiksmīgi dzēsta", self::SUCCESS);
             //Reditecting to the index action
             $this->_redirect("/admin/bildes");
 

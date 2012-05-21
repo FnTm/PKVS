@@ -5,7 +5,6 @@
  * @package Pasakumi
  * @subpackage Admin
  */
-
 /**
  * Model for the event types.
  * @author Janis Peisenieks
@@ -32,11 +31,18 @@ class Model_Pasakumi_Type extends Zend_Db_Table_Abstract
 
     /**
      * Get all the types in descending order by primary Id
+     * @param $id int the Id to exclude
      * @return Zend_Db_Table_Rowset_Abstract
      */
-    public function getAll()
+    public function getAll($id = null)
     {
-        return $this->fetchAll($this->select()->order($this->_primaryKey . " desc"));
+        $select = $this->select()->order($this->_primaryKey . " desc");
+        //Id of an item to exclude
+        if (!is_null($id)) {
+            $select->where($this->_primaryKey . "!=?", $id);
+        }
+
+        return $this->fetchAll($select);
     }
 
     /**
@@ -76,7 +82,7 @@ class Model_Pasakumi_Type extends Zend_Db_Table_Abstract
      * @param $data array Data to add to the update
      * @return int Number of rows updated
      */
-    public function updateType($id, $data)
+    public function updateType($data, $id)
     {
         return $this->update($data, $this->getAdapter()->quoteInto($this->_primaryKey . "=?", $id));
     }

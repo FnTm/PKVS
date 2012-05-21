@@ -1,3 +1,11 @@
+<?php
+/**
+ * Contains the admin balance view for all users
+ * @author Janis Peisenieks
+ * @package Maksajumi
+ * @subpackage Admin
+ */
+?>
 <table>
     <tr>
         <td>
@@ -11,7 +19,7 @@
                 <tbody>
                 <?php foreach ($this->bilance as $maksajums) {
                     $style = "";
-                    if ($maksajums['balance']>=0) {
+                    if ($maksajums['balance'] >= 0) {
                         $style = "paymentCompleted";
                     }
                     else {
@@ -51,14 +59,18 @@
                     echo "<td>" . $maksajums['maksajumsTitle'] . "</td>";
                     echo "<td>" . $maksajums['maksajumsValue'] . "</td>";
                     if (!$maksajums['maksajumsCompleted']) {
-                        $action="apstiprinat";
-                        $title="Aptiprināt";
+                        $action = "apstiprinat";
+                        $title = "Aptiprināt";
                     } else {
-                        $action="noraidit";
-                        $title="Noraidīt";
+                        $action = "noraidit";
+                        $title = "Noraidīt";
 
                     }
-                    echo "<td><a href=".$this->url(array('action'=>$action,"id"=>$maksajums['maksajumsId'])) . ">$title</a></td>";
+                    echo "<td>";
+                    echo "<a href=" . $this->url(array('action' => $action, "id" => $maksajums['maksajumsId'])) . ">$title</a>";
+                    echo "&nbsp;/&nbsp;<a href=" . $this->url(array('action' => "rediget-maksajumu", "id" => $maksajums['maksajumsId'])) . ">Rediģēt</a>";
+
+                    echo "</td>";
                     echo "</tr>";
 
                 }

@@ -56,57 +56,60 @@ class Admin_PasakumaTipiControllerTest extends ControllerTestCase
         $this->assertController("pasakuma-tipi");
     }
 
-    /*
+
     public function testRedigetWithSuccess()
     {
-        $categoryModel = new Model_Pasakumi_Type();
-        $types = $categoryModel->getAll();
         $this->request->setMethod('POST')
             ->setPost(array(
-            'pasakumsTitle' => 'user123',
-            'pasakumsDescription' => '43215',
-            'pasakumsTime' => date("Y-m-d H:i:s"),
-            'pasakumsLocation' => 'sdf',
-            'pasakumsCategory' => $types[0]['typeId']
+            'typeTitle' => 'user123',
+            'typeDescription' => '43215',
+            'typeParent' => 0
         ));
-        $pasakumiModel = new Model_Pasakumi();
-        $all = $pasakumiModel->getAllPasakumi();
-        $this->dispatch('/admin/pasakumi/rediget/id/' . $all[0]['pasakumsId']);
+        $pasakumiModel = new Model_Pasakumi_Type();
+        $all = $pasakumiModel->getAll();
+        $this->dispatch('/admin/pasakuma-tipi/rediget/id/' . $all[0]['typeId']);
 
-        $this->assertRedirectTo('/admin/pasakumi');
+        $this->assertRedirectTo('/admin/pasakuma-tipi');
     }
 
     public function testRedigetWithoutSuccess()
     {
         $this->request->setMethod('POST')
             ->setPost(array(
-            'pasakumsDescription' => '43215'
+            'typeDescription' => '43215',
+            'typeParent' => 0
         ));
 
-        $pasakumiModel = new Model_Pasakumi();
-        $all = $pasakumiModel->getAllPasakumi();
-        $this->dispatch('/admin/pasakumi/rediget/id/' . $all[0]['pasakumsId']);
+        $pasakumiModel = new Model_Pasakumi_Type();
+        $all = $pasakumiModel->getAll();
+        $this->dispatch('/admin/pasakuma-tipi/rediget/id/' . $all[0]['typeId']);
         $this->assertAction("rediget");
-        $this->assertController("pasakumi");
+        $this->assertController("pasakuma-tipi");
     }
 
     public function testRedigetWithoutSubmit()
     {
-
-
-        $pasakumiModel = new Model_Pasakumi();
-        $all = $pasakumiModel->getAllPasakumi();
-        $this->dispatch('/admin/pasakumi/rediget/id/' . $all[0]['pasakumsId']);
+        $pasakumiModel = new Model_Pasakumi_Type();
+        $all = $pasakumiModel->getAll();
+        $this->dispatch('/admin/pasakuma-tipi/rediget/id/' . $all[0]['typeId']);
         $this->assertAction("rediget");
-        $this->assertController("pasakumi");
+        $this->assertController("pasakuma-tipi");
     }
 
     public function testRedigetWithoutId()
     {
-        $this->dispatch('/admin/pasakumi/rediget/id/');
-        $this->assertRedirectTo('/admin/pasakumi');
+        $this->dispatch('/admin/pasakuma-tipi/rediget/id/');
+        $this->assertRedirectTo('/admin/pasakuma-tipi');
     }
-*/
+
+    public function testPointsWithoutSubmit()
+    {
+        $pasakumiModel = new Model_Pasakumi_Type();
+        $all = $pasakumiModel->getAll();
+        $this->dispatch('/admin/pasakuma-tipi/punkti/id/' . $all[0]['typeId']);
+        $this->assertAction("punkti");
+        $this->assertController("pasakuma-tipi");
+    }
     public function testDzestWithoutId()
     {
         $this->dispatch('/admin/pasakuma-tipi/dzest/id/');
@@ -126,6 +129,7 @@ class Admin_PasakumaTipiControllerTest extends ControllerTestCase
         $this->dispatch('/admin/pasakuma-tipi/dzest/id/' . $all[0]['typeId']);
         $this->assertRedirectTo('/admin/pasakuma-tipi');
     }
+
 
 
 }

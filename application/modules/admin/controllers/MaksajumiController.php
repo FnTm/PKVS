@@ -44,6 +44,7 @@ class Admin_MaksajumiController extends JP_Controller_Action
         $id = $this->_getParam("id", null);
         $this->view->form = $form = new Admin_Form_Maksajumi_Pievienot($userModel->getUsers(true, array('name asc')));
         $form->removeElement("maksajumsUserId");
+        $form->removeElement("maksajumsValue");
         if (!is_null($id)) {
             $form->setAction("/admin/maksajumi/rediget-maksajumu/id/" . $id);
             if ($this->getRequest()->isPost()) {
@@ -99,18 +100,19 @@ class Admin_MaksajumiController extends JP_Controller_Action
         $id = $this->_getParam("id", null);
         if (!is_null($id)) {
             $maksajumsModel = new Model_Maksajumi();
-            $maksajumsModel->changeMaksajums($id,1);
-            $this->log("Maksājums apstiprināts",self::SUCCESS);
+            $maksajumsModel->changeMaksajums($id, 1);
+            $this->log("Maksājums apstiprināts", self::SUCCESS);
             $this->_redirect("/admin/maksajumi");
         }
     }
+
     public function noraiditAction()
     {
         $id = $this->_getParam("id", null);
         if (!is_null($id)) {
             $maksajumsModel = new Model_Maksajumi();
-            $maksajumsModel->changeMaksajums($id,0);
-            $this->log("Maksājums noraidīts",self::SUCCESS);
+            $maksajumsModel->changeMaksajums($id, 0);
+            $this->log("Maksājums noraidīts", self::SUCCESS);
             $this->_redirect("/admin/maksajumi");
         }
     }

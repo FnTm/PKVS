@@ -67,7 +67,6 @@ class Model_Maksajumi extends Zend_Db_Table_Abstract
     {
         return $this->getAdapter()->fetchAll($this->bilanceQuery());
     }
-
     private function bilanceQuery()
     {
         $sql = $this->getFullQuery(false);
