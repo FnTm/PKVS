@@ -1,37 +1,43 @@
 <?php
-/**
-
- * User: Janis
- * Date: 12.22.3
- * Time: 18:09
+/** View for admin event page
+ * @author Janis Peisenieks
+ * @package Pasakumi
+ * @subpackage Default
  */
 
-echo "<a href='".$this->url(array('action'=>"pievienot"))."'>Izveidot jaunu pasakumu</a>";
+echo "<a href='" . $this->url(array('action' => "pievienot")) . "'>Izveidot jaunu pasakumu</a>";
 ?>
 
 <table>
-    <thead><tr><th>Nosaukums</th><th>Laiks</th><th>Apraksts</th><th>Darbības</th></tr></thead>
-<?php
- foreach ($this->pasakumi as $type) {
-    /** @var $type Model_Pasakumi_Row */
-    echo "<tr>";
-    echo "<td>";
-    echo $type['pasakumsTitle'];
-    echo "</td>";
-     echo "<td>";
-     echo $type['pasakumsTime'];
-     echo "</td>";
-    echo "<td>";
-    echo $type['pasakumsDescription'];
-    echo "</td>";
+    <thead>
+    <tr>
+        <th>Nosaukums</th>
+        <th>Laiks</th>
+        <th>Apraksts</th>
+        <th>Darbības</th>
+    </tr>
+    </thead>
+    <?php
+    foreach ($this->pasakumi as $type) {
+        /** @var $type Model_Pasakumi_Row */
+        echo "<tr>";
         echo "<td>";
-    echo "<a href='".$this->url(array('action'=>"rediget",'id'=>$type['pasakumsId']))."'>Rediģēt</a>";
-    echo "&nbsp;/&nbsp;<a href='".$this->url(array('controller'=>'apmekletiba','action'=>"rediget",'id'=>$type['pasakumsId']))."'>Apmeklētība</a>";
+        echo $type['pasakumsTitle'];
+        echo "</td>";
+        echo "<td>";
+        echo $type['pasakumsTime'];
+        echo "</td>";
+        echo "<td>";
+        echo $type['pasakumsDescription'];
+        echo "</td>";
+        echo "<td>";
+        echo "<a href='" . $this->url(array('action' => "rediget", 'id' => $type['pasakumsId'])) . "'>Rediģēt</a>";
+        echo "&nbsp;/&nbsp;<a href='" . $this->url(array('action' => "dzest", 'id' => $type['pasakumsId'])) . "'>Dzēst</a>";
+        echo "&nbsp;/&nbsp;<a href='" . $this->url(array('controller' => 'apmekletiba', 'action' => "rediget", 'id' => $type['pasakumsId'])) . "'>Apmeklētība</a>";
+        echo "</td>";
+        echo "</tr>";
 
-    echo "</td>";
-    echo "</tr>";
-
-}
+    }
 
 
     ?>

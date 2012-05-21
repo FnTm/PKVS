@@ -98,7 +98,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         //We add classes with JP_ prefix to autoloader
         $this->getApplication()->setAutoloaderNamespaces(
-            array('JP_'));
+            array('JP_','Draugiem_'));
         return $this;
     }
 

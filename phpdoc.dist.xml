@@ -13,6 +13,6 @@
         <ignore>public/*</ignore>
         <ignore>library/Sozfo/*</ignore>
         <ignore>library/PhpThumb/*</ignore>
-        <ignore>library/SF/*</ignore>
+        <ignore>library/Draugiem/*</ignore>
     </files>
 </phpdoc>

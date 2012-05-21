@@ -24,7 +24,7 @@ class Model_Users extends Zend_Db_Table_Abstract
     protected $_rowClass = "Model_User_Row";
 
 
-    public function createDraugiemUser($data)
+    public function createDraugiemUser($data, $token)
     {
         $row = $this->createRow();
 
@@ -34,6 +34,7 @@ class Model_Users extends Zend_Db_Table_Abstract
         $row->role = 'user';
         $row->email = "sdf";
         $row->icon = $data['img'];
+        $row->apikey = $token;
 
         $row->draugiemId = $data['uid'];
         $row->registered = date('Y-m-d H:i:s');
@@ -46,18 +47,18 @@ class Model_Users extends Zend_Db_Table_Abstract
         return $id;
     }
 
-    public function processUserFromDraugiem($data, &$register = false)
+    public function processUserFromDraugiem($data, &$register = false, $token)
     {
 
 
         if (NULL != $row = $this->getDraugiemUser($data['uid'])) {
-            $this->updateOnDraugiemLogin($data);
+            $this->updateOnDraugiemLogin($data, $token);
             $row = $this->getDraugiemUser($data['uid']);
             return $row;
         }
         else {
             $register = true;
-            $this->createDraugiemUser($data);
+            $this->createDraugiemUser($data, $token);
             return $this->getDraugiemUser($data['uid']);
         }
 
@@ -74,8 +75,8 @@ class Model_Users extends Zend_Db_Table_Abstract
     {
         $id = (int)$id;
         $row = $this->fetchRow('userId = ' . $id);
-        if(!is_null($row)){
-            $row=$row->toArray();
+        if (!is_null($row)) {
+            $row = $row->toArray();
         }
         return $row;
     }
@@ -93,10 +94,12 @@ class Model_Users extends Zend_Db_Table_Abstract
 
     }
 
-    public function updateOnDraugiemLogin($data){
+    public function updateOnDraugiemLogin($data, $token)
+    {
         $array['name'] = $data['name'] . " " . $data['surname'];
         $array['icon'] = $data['img'];
-        $this->update($array,$this->getAdapter()->quoteInto("draugiemId=?",$data['uid']));
+        $array['apikey'] = $token;
+        $this->update($array, $this->getAdapter()->quoteInto("draugiemId=?", $data['uid']));
     }
 
     public function getLatest()
@@ -106,18 +109,19 @@ class Model_Users extends Zend_Db_Table_Abstract
         $select->order('created desc');
         return $this->fetchAll($select);
     }
-/**
- * Get all users
- * @param bool $enabled If false, gets all, not only enabled users
- * @return array
- */
-    public function getUsers($enabled=true,$order=array())
+
+    /**
+     * Get all users
+     * @param bool $enabled If false, gets all, not only enabled users
+     * @return array
+     */
+    public function getUsers($enabled = true, $order = array())
     {
-        $select=null;
-        if($enabled){
-            $select=$this->select()->where('isApproved=?',(int)$enabled);
+        $select = null;
+        if ($enabled) {
+            $select = $this->select()->where('isApproved=?', (int)$enabled);
         }
-        foreach($order as $ord){
+        foreach ($order as $ord) {
             $select->order($ord);
         }
         return $this->fetchAll($select)->toArray();
@@ -134,8 +138,8 @@ class Model_Users extends Zend_Db_Table_Abstract
     {
         $data['isApproved'] = 1;
         $where = $this->getAdapter()->quoteInto('userId = ?', $id);
-        $punkti=new Model_Punkti();
-        $punkti->addPunkti($id,$punkti::REGISTER_EVENT,"Par reģistrēšanos",1);
+        $punkti = new Model_Punkti();
+        $punkti->addPunkti($id, $punkti::REGISTER_EVENT, "Par reģistrēšanos", 1);
         $this->update($data, $where);
     }
 
@@ -143,8 +147,8 @@ class Model_Users extends Zend_Db_Table_Abstract
     {
         $data['isApproved'] = 0;
         $where = $this->getAdapter()->quoteInto('userId = ?', $id);
-        $punkti=new Model_Punkti();
-        $punkti->addPunkti($id,$punkti::REGISTER_EVENT,"Par izslēgšanu",-1);
+        $punkti = new Model_Punkti();
+        $punkti->addPunkti($id, $punkti::REGISTER_EVENT, "Par izslēgšanu", -1);
         $this->update($data, $where);
     }
 

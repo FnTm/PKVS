@@ -1,33 +1,84 @@
 <?php
 /**
- * User: Janis
- * Date: 12.22.3
- * Time: 18:01
+ * Contains the model for the event types.
+ * @author Janis Peisenieks
+ * @package Pasakumi
+ * @subpackage Admin
  */
 
 /**
- * A model for all the Pasakumi Type actions.
- * @package Admin
- * @subpackage Pasakumi
+ * Model for the event types.
+ * @author Janis Peisenieks
+ * @package Pasakumi
+ * @subpackage Admin
  */
 class Model_Pasakumi_Type extends Zend_Db_Table_Abstract
 {
+    /**
+     * Name of the DB table to use
+     * @var string
+     */
     public $_name = "pasakumitype";
+    /**
+     * Name of the Row class to which to bind the table results
+     * @var string
+     */
     public $_rowClass = "Model_Pasakumi_Type_Row";
-    public $_primary="typeId";
+    /**
+     * The primary key
+     * @var string
+     */
+    public $_primaryKey = "typeId";
 
-    public function getAll(){
-        return $this->fetchAll();
+    /**
+     * Get all the types in descending order by primary Id
+     * @return Zend_Db_Table_Rowset_Abstract
+     */
+    public function getAll()
+    {
+        return $this->fetchAll($this->select()->order($this->_primaryKey . " desc"));
     }
-    public function createType($data){
+
+    /**
+     * Create a new type
+     * @param $data array the data to insert
+     * @return int id of the inserted type
+     */
+    public function createType($data)
+    {
         return $this->insert($data);
     }
-    public function deleteType($id){
-        $this->delete($this->getAdapter()->quoteInto($this->_primary."=?",$id));
-    }
-    public function getType($id){
-        return $this->fetchRow($this->select()->where('typeId=?',$id));
 
+    /**
+     * Delete a single type
+     * @param $id int Id of the type to delete
+     * @return int count of rows deleted
+     */
+    public function deleteType($id)
+    {
+        return $this->delete($this->getAdapter()->quoteInto($this->_primaryKey . "=?", $id));
+    }
+
+    /**
+     *  Get a single type by Id
+     * @param $id int Id of the type
+     * @return null|Zend_Db_Table_Row_Abstract
+     */
+    public function getType($id)
+    {
+        return $this->fetchRow($this->select()->where('typeId=?', $id));
+
+    }
+
+    /**
+     * Updates the record defined by the Id
+     * @param $id int Id of the type to edit
+     * @param $data array Data to add to the update
+     * @return int Number of rows updated
+     */
+    public function updateType($id, $data)
+    {
+        return $this->update($data, $this->getAdapter()->quoteInto($this->_primaryKey . "=?", $id));
     }
 
 }
