@@ -41,6 +41,7 @@ class Model_AuthAcl extends Zend_Acl
             ->addResource(new Zend_Acl_Resource('admin:pasakuma-tipi'), 'admin')
             ->addResource(new Zend_Acl_Resource('admin:apmekletiba'), 'admin')
             ->addResource(new Zend_Acl_Resource('admin:apmekletiba-tips'), 'admin')
+            ->addResource(new Zend_Acl_Resource('admin:maksajumi'), 'admin')
             ->addResource(new Zend_Acl_Resource('admin:jaunumu-kategorijas'), 'admin')
             ->addResource(new Zend_Acl_Resource('admin:user'), 'admin');
         $this->addResource(new Zend_Acl_Resource('default'))
